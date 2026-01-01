@@ -147,10 +147,31 @@ footer {
     text-align: left;
 }
 
-/* --- Perception (Gestalt) --- */
-@keyframes spinClosure { 0% { transform: rotate(0deg); border-color: transparent; } 50% { border-color: var(--accent-color); } 100% { transform: rotate(360deg); border-color: transparent; } }
+/* --- Perception & Structure (Curator's Cut) --- */
+/* Closure: "The Alignment" */
 .perception-closure .demo-canvas { background: #1a1a1a; }
-.perception-closure .demo-canvas::before { content: ''; width: 150px; height: 150px; border: 15px dashed var(--accent-color); border-radius: 50%; animation: spinClosure 11s linear infinite; }
+.perception-closure .demo-canvas::before { /* Static arc */
+    content: '';
+    width: 150px; height: 150px;
+    border: 15px solid var(--accent-color);
+    border-radius: 50%;
+    border-color: var(--accent-color) var(--accent-color) transparent transparent;
+    transform: rotate(45deg);
+    animation: none;
+}
+.perception-closure .demo-canvas::after { /* User-controlled arc */
+    content: '';
+    width: 150px; height: 150px;
+    border: 15px solid var(--accent-color);
+    border-radius: 50%;
+    border-color: transparent transparent var(--accent-color) var(--accent-color);
+    animation: none;
+    transition: transform 0.1s ease-out, opacity 0.2s;
+}
+.js-active .perception-closure .demo-canvas::after {
+    transform: rotate(calc(var(--int-x, 0.5) * 720deg - 360deg));
+    opacity: calc(1 - abs(var(--int-x, 0.5) - 0.625) * 5); /* Opaque near solution */
+}
 
 @keyframes proximityGroup { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(20px, 0); } }
 .perception-proximity .demo-canvas { background: #222; }
@@ -179,9 +200,35 @@ footer {
 .structure-rule-of-thirds .demo-canvas::before { content: ''; position: absolute; width: 100%; height: 100%; background: linear-gradient(90deg, transparent 33%, rgba(255,255,255,0.2) 33%, rgba(255,255,255,0.2) 34%, transparent 34%, transparent 66%, rgba(255,255,255,0.2) 66%, rgba(255,255,255,0.2) 67%, transparent 67%), linear-gradient(0deg, transparent 33%, rgba(255,255,255,0.2) 33%, rgba(255,255,255,0.2) 34%, transparent 34%, transparent 66%, rgba(255,255,255,0.2) 66%, rgba(255,255,255,0.2) 67%, transparent 67%); }
 .structure-rule-of-thirds .demo-canvas::after { content: ''; width: 20px; height: 20px; background: var(--accent-color); border-radius: 50%; position: absolute; top: 33%; left: 66%; transform: translate(-50%, -50%); animation: colorBreath 3s ease-in-out infinite; }
 
-.structure-hierarchy .demo-canvas { background: #061735; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; }
-.structure-hierarchy .demo-canvas::before { content: ''; width: 120px; height: 120px; background: var(--accent-color); border-radius: 50%; }
-.structure-hierarchy .demo-canvas::after { content: ''; width: 60px; height: 60px; background: #4a5b7c; border-radius: 50%; box-shadow: 0 70px 0 -15px #2a3b5c, 0 110px 0 -22px #1a2b4c; }
+/* Hierarchy: "Flattening the Scale" */
+.structure-hierarchy .demo-canvas { background: #061735; }
+.structure-hierarchy .demo-canvas::before { /* Large circle shrinks */
+    content: '';
+    width: 120px; height: 120px;
+    background: var(--accent-color);
+    border-radius: 50%;
+    position: absolute;
+    animation: none;
+    transition: all 0.1s ease-out;
+}
+.structure-hierarchy .demo-canvas::after { /* Small circle grows */
+    content: '';
+    width: 60px; height: 60px;
+    background: #4a5b7c;
+    border-radius: 50%;
+    position: absolute;
+    animation: none;
+    box-shadow: none;
+    transition: all 0.1s ease-out;
+}
+.js-active .structure-hierarchy .demo-canvas::before {
+    width: calc(120px - var(--int-y, 0.5) * 60px);
+    height: calc(120px - var(--int-y, 0.5) * 60px);
+}
+.js-active .structure-hierarchy .demo-canvas::after {
+    width: calc(60px + var(--int-y, 0.5) * 60px);
+    height: calc(60px + var(--int-y, 0.5) * 60px);
+}
 
 @keyframes economyFade { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 .structure-economy .demo-canvas { background: #061735; }
@@ -192,24 +239,65 @@ footer {
 .structure-variety .demo-canvas { background: #061735; }
 .structure-variety .demo-canvas::before { content: ''; width: 80px; height: 80px; animation: varietyDance 8s linear infinite; }
 
-/* --- Spatial Depth --- */
+/* --- Spatial Depth (Curator's Cut) --- */
 @keyframes roadMove { 0% { background-position: 0 0; } 100% { background-position: 0 100px; } }
 .spatial-depth-linear-perspective .demo-canvas { background: #061735; perspective: 200px; overflow: hidden; }
 .spatial-depth-linear-perspective .demo-canvas::before { content: ''; position: absolute; width: 300%; left: -100%; height: 100%; background: linear-gradient(90deg, transparent 49%, var(--accent-color) 49%, var(--accent-color) 51%, transparent 51%), linear-gradient(0deg, transparent 49%, rgba(255,255,255,0.2) 49%, rgba(255,255,255,0.2) 51%, transparent 51%); background-size: 100px 100px; transform: rotateX(60deg); transform-origin: 50% 100%; animation: roadMove 2s linear infinite; }
 
-@keyframes fogDrift { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(10px); } }
+/* Atmospheric Perspective: "The Range" */
 .spatial-depth-atmospheric-perspective .demo-canvas { background: #d0dbe8; position: relative; overflow: hidden; }
-.spatial-depth-atmospheric-perspective .demo-canvas::before { content: ''; width: 150%; height: 100px; background: #8da1bf; border-radius: 50% 50% 0 0; position: absolute; bottom: 40px; left: -20px; animation: fogDrift 9s ease-in-out infinite alternate; }
-.spatial-depth-atmospheric-perspective .demo-canvas::after { content: ''; width: 150%; height: 80px; background: #061735; border-radius: 50% 50% 0 0; position: absolute; bottom: -20px; right: -20px; animation: fogDrift 7s ease-in-out infinite alternate-reverse; }
+.spatial-depth-atmospheric-perspective .demo-canvas::before { /* Back layer */
+    content: '';
+    width: 150%; height: 100px;
+    background: #8da1bf;
+    border-radius: 50% 50% 0 0;
+    position: absolute;
+    bottom: 40px; left: -20px;
+    animation: none;
+    transition: filter 0.1s ease-out;
+}
+.spatial-depth-atmospheric-perspective .demo-canvas::after { /* Front layer */
+    content: '';
+    width: 150%; height: 80px;
+    background: #061735;
+    border-radius: 50% 50% 0 0;
+    position: absolute;
+    bottom: -20px; right: -20px;
+    animation: none;
+}
+.js-active .spatial-depth-atmospheric-perspective .demo-canvas::before {
+    filter:
+        saturate(calc(1 - var(--int-y, 0.5)))
+        brightness(calc(1 + var(--int-y, 0.5) * 0.5));
+}
 
 @keyframes foreshortenTurn { 0% { transform: rotateX(0deg) scaleY(1); } 50% { transform: rotateX(75deg) scaleY(0.5); } 100% { transform: rotateX(0deg) scaleY(1); } }
 .spatial-depth-foreshortening .demo-canvas { background: #061735; perspective: 400px; }
 .spatial-depth-foreshortening .demo-canvas::before { content: ''; width: 80px; height: 150px; background: var(--accent-color); transform-origin: bottom center; animation: foreshortenTurn 5s ease-in-out infinite; }
 
-@keyframes zOrbit { 0% { transform: translateX(-50px) scale(0.8); z-index: 1; background: #333; } 25% { transform: translateX(0px) scale(0.6); z-index: 0; background: #222; } 50% { transform: translateX(50px) scale(0.8); z-index: 1; background: #333; } 75% { transform: translateX(0px) scale(1.1); z-index: 3; background: #fff; } 100% { transform: translateX(-50px) scale(0.8); z-index: 1; background: #333; } }
+/* Overlapping: "The Eclipse" */
 .spatial-depth-overlapping .demo-canvas { background: #061735; }
-.spatial-depth-overlapping .demo-canvas::before { content: ''; width: 60px; height: 60px; border-radius: 50%; position: absolute; animation: zOrbit 6s linear infinite; }
-.spatial-depth-overlapping .demo-canvas::after { content: ''; width: 60px; height: 60px; background: var(--accent-color); border-radius: 50%; position: absolute; }
+.spatial-depth-overlapping .demo-canvas::before {
+    content: '';
+    width: 100px; height: 100px;
+    border-radius: 50%;
+    position: absolute;
+    background: var(--accent-color);
+    mix-blend-mode: screen;
+    animation: none;
+    transition: transform 0.1s ease-out;
+}
+.spatial-depth-overlapping .demo-canvas::after {
+    content: '';
+    width: 100px; height: 100px;
+    border-radius: 50%;
+    position: absolute;
+    background: #4a5b7c;
+    animation: none;
+}
+.js-active .spatial-depth-overlapping .demo-canvas::before {
+    transform: translateX(calc((var(--int-x, 0.5) - 0.5) * 100px));
+}
 
 /* --- Color Dynamics --- */
 @keyframes tempShift { 0%, 100% { left: 20%; background: #ff4500; } 50% { left: 80%; background: #1e90ff; } }
@@ -365,39 +453,178 @@ a.button {
 @keyframes thesisGrid { 0% { width: 0; height: 0; opacity: 0; transform: translate(-50%, -50%) rotate(0deg); } 10% { width: 200px; height: 200px; opacity: 1; transform: translate(-50%, -50%) rotate(0deg); } 30% { transform: translate(-50%, -50%) rotate(0deg); border-color: rgba(255,255,255,0.2); } 40% { transform: translate(-50%, -50%) rotate(0deg) scale(0.9); } 60% { transform: translate(-40%, -40%) rotate(15deg); border-color: rgba(255,255,255,0.6); } 80% { transform: translate(-40%, -40%) rotate(15deg); opacity: 1; } 90% { opacity: 0; transform: translate(-40%, -40%) rotate(15deg) scale(1.1); } 100% { opacity: 0; } }
 @keyframes antithesisShape { 0%, 25% { transform: translate(150px, 100px) scale(0); opacity: 0; } 35% { transform: translate(50px, 20px) scale(1); opacity: 1; } 60% { transform: translate(-20px, 20px) scale(1); } 80% { transform: translate(-20px, 20px) scale(1); opacity: 1; } 90% { transform: translate(-20px, 20px) scale(0); opacity: 0; } 100% { opacity: 0; } }
 
-/* --- The Elements --- */
+/* --- The Elements (Curator's Cut) --- */
+/* Line: "The Bowstring" - Tension & Distortion */
 .element-line .demo-canvas { background: #061735; }
-.element-line .demo-canvas::before { content: ''; width: 2px; height: 80%; background: var(--accent-color); box-shadow: 0 0 10px var(--accent-color); animation: vibrate 0.13s linear infinite; }
+.element-line .demo-canvas::before {
+    content: '';
+    width: 80%; height: 4px;
+    background: var(--accent-color);
+    border-radius: 2px;
+    animation: none;
+    transition: transform 0.05s ease-out;
+}
+.js-active .element-line .demo-canvas::before {
+    transform-origin: calc(var(--int-x, 0.5) * 100%) 50%;
+    transform:
+        translateY(calc((var(--int-y, 0.5) - 0.5) * 200px))
+        scaleY(calc(1 + (abs(var(--int-y, 0.5) - 0.5)) * 10));
+}
 
+/* Shape: "The Metamorphosis" - Geometric vs. Organic */
 .element-shape .demo-canvas { background: #061735; }
-.element-shape .demo-canvas::before { content: ''; width: 100px; height: 100px; background: var(--accent-color); position: absolute; top: 30%; left: 30%; animation: drift 11s ease-in-out infinite; }
-.element-shape .demo-canvas::after { content: ''; width: 120px; height: 120px; border: 2px solid var(--muted-text); border-radius: 50%; position: absolute; top: 40%; left: 40%; mix-blend-mode: exclusion; animation: drift 17s ease-in-out infinite reverse; }
+.element-shape .demo-canvas::before {
+    content: '';
+    width: 150px; height: 150px;
+    background: var(--accent-color);
+    animation: none;
+    transition: border-radius 0.1s ease-out;
+}
+.js-active .element-shape .demo-canvas::before {
+    border-radius: calc(var(--int-x, 0.5) * 75px); /* 0 to 50% */
+}
+.element-shape .demo-canvas::after { display: none; }
 
-.element-form .demo-canvas::before { content: ''; width: 200px; height: 200px; border-radius: 50%; background: radial-gradient(circle at 50% 50%, #fff, #061735); background-size: 200% 200%; animation: lightShift 13s ease-in-out infinite; }
+/* Form: Chiaroscuro & Light Source */
+.element-form .demo-canvas::before {
+    content: '';
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    animation: none;
+}
+.js-active .element-form .demo-canvas::before {
+    background: radial-gradient(circle at calc(var(--int-x, 0.5) * 100%) calc(var(--int-y, 0.5) * 100%), #fff, #061735 70%);
+}
 
-.element-color .demo-canvas { background: #061735; }
-.element-color .demo-canvas::before { content: ''; width: 150px; height: 150px; background: var(--accent-color); position: absolute; left: 25%; mix-blend-mode: screen; animation: colorBreath 17s ease-in-out infinite; }
-.element-color .demo-canvas::after { content: ''; width: 150px; height: 150px; background: #4a5b7c; position: absolute; right: 25%; mix-blend-mode: screen; animation: colorBreath 19s ease-in-out infinite reverse; }
+/* Color: Interaction of Color (Albers Style) */
+.element-color .demo-canvas {
+    background: #555;
+    transition: background-color 0.1s ease-out;
+}
+.js-active .element-color .demo-canvas {
+    background-color: hsl(calc(var(--int-y, 0.5) * 360), 40%, 30%);
+}
+.element-color .demo-canvas::before {
+    content: '';
+    width: 120px; height: 120px;
+    background: var(--accent-color);
+    animation: none;
+    mix-blend-mode: normal; /* Override */
+}
+.element-color .demo-canvas::after { display: none; }
 
-.element-texture .demo-canvas { background: #fff; }
-.element-texture .demo-canvas::before, .element-texture .demo-canvas::after { content: ''; position: absolute; width: 200%; height: 200%; background: repeating-linear-gradient(45deg, #000 0, #000 1px, transparent 1px, transparent 4px); }
-.element-texture .demo-canvas::before { animation: moireRotate 67s linear infinite; }
-.element-texture .demo-canvas::after { opacity: 0.5; }
 
-.element-space .demo-canvas { background: #fff; }
-.element-space .demo-canvas::before { content: ''; width: 60%; height: 60%; border: 1px solid #000; }
-.element-space .demo-canvas::after { content: ''; width: 150px; height: 150px; background: #000; position: absolute; right: -50px; animation: spaceBreathe 19s ease-in-out infinite; }
+/* Texture: Noise Density */
+.element-texture .demo-canvas {
+    background: #111;
+    overflow: hidden;
+}
+.element-texture .demo-canvas::before {
+    content: '';
+    animation: none;
+    width: 300%; height: 300%;
+    background-image:
+        radial-gradient(#fff 1px, transparent 1px),
+        radial-gradient(#fff 1px, transparent 1px);
+    background-size: 10px 10px;
+    background-position: 0 0, 5px 5px;
+    transition: opacity 0.1s;
+}
+.js-active .element-texture .demo-canvas::before {
+    opacity: calc(var(--int-y, 0.5) * 0.5);
+    transform: translate(calc((var(--int-x, 0.5) - 0.5) * -100px), calc((var(--int-y, 0.5) - 0.5) * -100px));
+}
+.element-texture .demo-canvas::after { display: none; }
 
-.element-value .demo-canvas { background: #000; -webkit-mask-image: radial-gradient(circle, black 20%, transparent 50%); mask-image: radial-gradient(circle, black 20%, transparent 50%); -webkit-mask-size: 200% 200%; mask-size: 200% 200%; animation: spotlight 23s linear infinite; }
-.element-value .demo-canvas::before { content: ''; width: 100%; height: 100%; background: linear-gradient(45deg, #fff 25%, transparent 25%) -50px 0, linear-gradient(-45deg, #fff 25%, transparent 25%) -50px 0; background-size: 100px 100%; opacity: 0.2; }
+/* Space: "The Vise" - Pressure & Void */
+.element-space .demo-canvas {
+    background: var(--accent-color); /* The void is the subject */
+    flex-direction: row;
+    padding: 0;
+}
+.element-space .demo-canvas::before, .element-space .demo-canvas::after {
+    content: '';
+    background: #061735; /* Positive forms */
+    height: 100%;
+    width: 25%;
+    border: none;
+    animation: none;
+    transition: width 0.1s ease-out;
+}
+.js-active .element-space .demo-canvas::before {
+    width: calc(var(--int-x, 0.5) * 49.5%);
+}
+.js-active .element-space .demo-canvas::after {
+    width: calc((1 - var(--int-x, 0.5)) * 49.5%);
+}
 
-/* --- The Principles --- */
+/* Value: Clarity from Darkness */
+.element-value .demo-canvas {
+    background: #111;
+    -webkit-mask-image: none;
+    mask-image: none;
+    animation: none;
+    transition: filter 0.1s ease-out;
+}
+.element-value .demo-canvas::before {
+    content: '';
+    width: 100%; height: 100%;
+    background: transparent;
+    opacity: 1;
+    /* Ghostly shapes */
+    box-shadow:
+        50px 50px 80px 20px #777,
+        -70px -30px 60px 10px #555,
+        80px -90px 40px 0px #999,
+        -20px 80px 50px 0 #444;
+}
+.js-active .element-value .demo-canvas {
+    filter: contrast(calc(1 + var(--int-y, 0.5) * 15));
+}
+
+/* --- The Principles (Curator's Cut) --- */
+/* Balance: "The Lever" - Asymmetric Equilibrium */
 .principle-balance .demo-canvas { background: #fff; }
-.principle-balance .demo-canvas::before { content: ''; width: 100px; height: 100px; background: #000; position: absolute; left: 30%; }
-.principle-balance .demo-canvas::after { content: ''; width: 10px; height: 10px; background: var(--accent-color); border-radius: 50%; position: absolute; left: 30%; animation: orbit 13.7s linear infinite; }
+.principle-balance .demo-canvas::before { /* The large, faint mass */
+    content: '';
+    width: 200px; height: 200px;
+    background: #ccc;
+    border-radius: 50%;
+    position: absolute;
+    left: 10%;
+    animation: none;
+    transition: opacity 0.2s ease-out;
+}
+.principle-balance .demo-canvas::after { /* The small, dense subject */
+    content: '';
+    width: 50px; height: 50px;
+    background: #000;
+    position: absolute;
+    right: 10%;
+    animation: none;
+    transition: transform 0.1s ease-out;
+}
+.js-active .principle-balance .demo-canvas::before {
+    /* Becomes more solid as the small square moves away */
+    opacity: calc(0.2 + (1 - var(--int-x, 0.5)) * 0.6);
+}
+.js-active .principle-balance .demo-canvas::after {
+    transform: translateX(calc((var(--int-x, 0.5) - 0.5) * -150px));
+}
 
-.principle-contrast .demo-canvas { background: #000; }
-.principle-contrast .demo-canvas::before { content: ''; width: 80px; height: 80px; border: 4px solid var(--accent-color); animation: blurFocus 11s linear infinite; }
+/* Contrast: "The Edge" */
+.principle-contrast .demo-canvas {
+    background: linear-gradient(90deg, #fff 50%, #000 50%);
+    transition: background-position 0.1s ease-out;
+}
+.principle-contrast .demo-canvas::before {
+    display: none; /* Not needed */
+}
+.js-active .principle-contrast .demo-canvas {
+    background-size: 200% 100%;
+    background-position: calc(var(--int-x, 0.5) * 100%) 0;
+}
+
 
 .principle-emphasis .demo-canvas { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; width: 200px; background-image: radial-gradient(#4a5b7c 2px, transparent 2px); background-size: 20px 20px; animation: glitch 0.23s infinite; }
 .principle-emphasis .demo-canvas::before { content: ''; width: 20px; height: 20px; background: var(--accent-color); position: absolute; top: 61%; left: 61%; box-shadow: 0 0 20px var(--accent-color); }
@@ -408,15 +635,58 @@ a.button {
 .principle-pattern .demo-canvas { background-color: #061735; background-image: url('../img/glider.png'); background-size: 40px 40px; image-rendering: pixelated; animation: scrollBg 37s steps(8) infinite; }
 @keyframes scrollBg { from { background-position: 0 0; } to { background-position: 40px 40px; } }
 
-.principle-rhythm .demo-canvas { display: flex; align-items: flex-end; justify-content: center; gap: 20px; height: 200px; background: #061735; }
-.principle-rhythm .demo-canvas::before, .principle-rhythm .demo-canvas::after { content: ''; width: 20px; background: var(--accent-color); }
-.principle-rhythm .demo-canvas::before { animation: polyrhythm 2.3s ease-in-out infinite; }
-.principle-rhythm .demo-canvas::after { animation: polyrhythm 3.1s ease-in-out infinite; }
+/* Rhythm: "The Colonnade" - Interval & Pacing */
+.principle-rhythm .demo-canvas {
+    background: #061735;
+    flex-direction: row;
+    gap: 10px;
+}
+.principle-rhythm .demo-canvas::before, .principle-rhythm .demo-canvas::after {
+    content: '';
+    width: 20px;
+    height: 80%;
+    background: var(--accent-color);
+    animation: none;
+    transition: margin-left 0.1s ease-out;
+}
+.js-active .principle-rhythm .demo-canvas::before {
+    /* Regular spacing */
+    margin-left: 10px;
+}
+.js-active .principle-rhythm .demo-canvas::after {
+    /* Syncopated spacing based on X */
+    margin-left: calc(10px + var(--int-x, 0.5) * 100px);
+}
 
-.principle-unity .demo-canvas { background: #fff; }
-.principle-unity .demo-canvas::before, .principle-unity .demo-canvas::after { content: ''; width: 50px; height: 50px; border: 2px solid #000; position: absolute; }
-.principle-unity .demo-canvas::before { var(--x): -40px; var(--y): -40px; var(--r): 15deg; animation: gestalt 13s ease-in-out infinite; }
-.principle-unity .demo-canvas::after { var(--x): 40px; var(--y): 40px; var(--r): -15deg; animation: gestalt 13s ease-in-out infinite; }
+/* Unity: "Wave of Order" - From Chaos to Order */
+.principle-unity .demo-canvas {
+    background: #fff;
+    /* This is too complex for pure CSS vars. We need a different approach.
+       Let's do a simpler "Gravity Well" concept. */
+    --chaos-x: 40px;
+    --chaos-y: 40px;
+    --chaos-r: 15deg;
+}
+.principle-unity .demo-canvas::before, .principle-unity .demo-canvas::after {
+    content: '';
+    width: 50px; height: 50px;
+    border: 2px solid #000;
+    position: absolute;
+    animation: none;
+    transition: transform 0.1s ease-out;
+}
+.principle-unity .demo-canvas::before {
+    transform: translate(var(--chaos-x), var(--chaos-y)) rotate(var(--chaos-r));
+}
+.principle-unity .demo-canvas::after {
+    transform: translate(calc(var(--chaos-x) * -1), calc(var(--chaos-y) * -1)) rotate(calc(var(--chaos-r) * -1));
+}
+.js-active .principle-unity .demo-canvas {
+    /* Y axis pulls the chaotic elements into a unified center */
+    --chaos-x: calc(40px * (1 - var(--int-y, 0.5)));
+    --chaos-y: calc(40px * (1 - var(--int-y, 0.5)));
+    --chaos-r: calc(15deg * (1 - var(--int-y, 0.5)));
+}
 
 /* --- The Synthesis: Composition (The Grand Finale) --- */
 .composition-composition .demo-canvas {
