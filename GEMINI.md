@@ -1,0 +1,64 @@
+# Art Fundamentals Web App
+
+## Project Overview
+
+This is a Clojure-based web application designed to teach the fundamental elements of art and principles of composition. It is a dual-mode application:
+1.  **Development:** A dynamic web server using Ring and Compojure.
+2.  **Production:** A static site generator that outputs HTML files to the `docs/` directory for hosting on GitHub Pages.
+
+**Tech Stack:**
+*   **Language:** Clojure
+*   **Build Tool:** Leiningen
+*   **Web Framework:** Ring / Compojure
+*   **Templating:** Hiccup
+*   **Styling:** Custom CSS (No preprocessors)
+
+## Architecture
+
+The application logic resides in the `art-web` directory.
+*   **Dynamic Serving:** `art-web.handler` defines routes for development, allowing for fast iteration.
+*   **Static Generation:** `art-web.static` leverages the same views to generate static HTML files, handling URL prefixes for GitHub Pages (e.g., `/art/`).
+*   **Content/Views:** `art-web.views` contains all textual content and HTML structure. It uses a dynamic `*base-url*` var to adapt links for different environments.
+
+## Directory Structure
+
+*   `art-web/`: The core Clojure project.
+    *   `src/art_web/`: Source code.
+        *   `handler.clj`: Ring application routes.
+        *   `views.clj`: Hiccup templates and data definitions for Art Elements/Principles.
+        *   `static.clj`: Script to generate the static site.
+    *   `resources/public/css/`: CSS files.
+    *   `project.clj`: Leiningen configuration.
+*   `docs/`: The generated static website (HTML/CSS). This folder is served by GitHub Pages.
+
+## Building and Running
+
+All commands should be run from inside the `art-web` directory.
+
+### 1. Development Server
+Starts a local web server (usually on port 3000) with hot-reloading for views.
+```bash
+cd art-web
+lein ring server
+# OR for headless environments
+lein ring server-headless
+```
+
+### 2. Generate Static Site
+Compiles the views into static HTML files in the `docs/` directory. This script automatically adjusts paths (like CSS links) to work with the GitHub Pages subpath (`/art/`).
+```bash
+cd art-web
+lein run -m art-web.static
+```
+
+### 3. Deploy
+The `docs/` folder is configured to be served by GitHub Pages. To deploy updates:
+1.  Run the generation command above.
+2.  Commit the changes to `docs/`.
+3.  Push to the `main` branch.
+
+## Development Conventions
+
+*   **Visual Demos:** The specific visual representations of art concepts (e.g., a color spectrum, a balanced composition) are implemented primarily through CSS classes defined in `style.css` and applied in `views.clj`.
+*   **Base URL:** When adding new links or assets in `views.clj`, wrap paths with the `(url ...)` function to ensure they resolve correctly in both development and production.
+*   **Content:** The data for "Elements" and "Principles" is defined as Clojure maps in `views.clj`. Update these structures to change text content.
