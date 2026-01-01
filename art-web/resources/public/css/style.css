@@ -249,92 +249,217 @@ footer {
     box-shadow: inset 0 0 20px rgba(0,0,0,0.02);
 }
 
-/* --- CSS Art (Polished) --- */
+/* --- CSS Art (Animated & Real-Time) --- */
 
-/* Line */
+/* Keyframes Definitions */
+@keyframes scrollBg {
+    from { background-position: 0 0; }
+    to { background-position: 50px 0; }
+}
+@keyframes pulse {
+    0%, 100% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.1); opacity: 1; }
+}
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+@keyframes rotate3D {
+    0% { transform: rotateX(0) rotateY(0); }
+    100% { transform: rotateX(360deg) rotateY(360deg); }
+}
+@keyframes shiftColor {
+    0% { filter: hue-rotate(0deg); }
+    100% { filter: hue-rotate(360deg); }
+}
+@keyframes jitter {
+    0% { background-position: 0 0; }
+    25% { background-position: 2px 2px; }
+    50% { background-position: -2px -2px; }
+    75% { background-position: 2px -2px; }
+    100% { background-position: 0 0; }
+}
+@keyframes perspectiveMove {
+    0% { transform: translateZ(-100px); }
+    50% { transform: translateZ(-50px); }
+    100% { transform: translateZ(-100px); }
+}
+@keyframes gradientFlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+@keyframes balanceTilt {
+    0%, 100% { transform: rotate(-5deg); }
+    50% { transform: rotate(5deg); }
+}
+@keyframes slideRight {
+    0% { transform: translateX(-100%); opacity: 0; }
+    50% { opacity: 1; }
+    100% { transform: translateX(100%); opacity: 0; }
+}
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); animation-timing-function: ease-in; }
+    50% { transform: translateY(-30px); animation-timing-function: ease-out; }
+}
+@keyframes unite {
+    0%, 100% { gap: 10px; }
+    50% { gap: 2px; }
+}
+
+/* Line: Moving Grid */
 .element-line .demo-canvas {
     background-image: 
         repeating-linear-gradient(90deg, transparent, transparent 49px, var(--text-color) 50px),
         linear-gradient(0deg, transparent 49%, var(--text-color) 50%, transparent 51%);
     background-size: 50px 100%, 100% 2px;
+    animation: scrollBg 2s linear infinite;
 }
 
-/* Shape */
+/* Shape: Floating and Pulsing */
 .element-shape .demo-canvas::before {
     content: ''; position: absolute; left: 20%;
-    width: 0; height: 0; border-left: 50px solid transparent; border-right: 50px solid transparent; border-bottom: 80px solid var(--accent-color);
+    width: 0; height: 0; 
+    border-left: 50px solid transparent; 
+    border-right: 50px solid transparent; 
+    border-bottom: 80px solid var(--accent-color);
+    animation: float 3s ease-in-out infinite;
 }
 .element-shape .demo-canvas::after {
     content: ''; position: absolute; right: 20%;
-    width: 100px; height: 100px; background: var(--text-color); border-radius: 50%; opacity: 0.8; mix-blend-mode: multiply;
+    width: 100px; height: 100px; 
+    background: var(--text-color); border-radius: 50%; 
+    opacity: 0.8; mix-blend-mode: multiply;
+    animation: pulse 4s ease-in-out infinite;
 }
 
-/* Form */
+/* Form: 3D Rotation */
+.element-form .demo-canvas {
+    perspective: 800px;
+}
 .element-form .demo-canvas::before {
-    content: ''; width: 30%; padding-bottom: 30%; border-radius: 50%;
+    content: ''; width: 150px; height: 150px;
     background: radial-gradient(circle at 30% 30%, #fff, var(--text-color));
-    box-shadow: 0 10px 20px rgba(6, 23, 53, 0.4);
+    border-radius: 50%;
+    /* Simulating light movement by moving background */
+    background-size: 200% 200%;
+    animation: gradientFlow 4s ease infinite;
+    box-shadow: 0 10px 30px rgba(6, 23, 53, 0.4);
 }
 
-/* Color */
+/* Color: Spectrum Shift */
 .element-color .demo-canvas {
-    background: linear-gradient(to right, #fff, var(--accent-color), var(--text-color));
+    background: linear-gradient(to right, #fff, var(--accent-color), var(--text-color), #061735, #B3892C, #fff);
+    background-size: 400% 100%;
+    animation: gradientFlow 10s ease infinite;
 }
 
-/* Texture */
+/* Texture: Static Jitter */
 .element-texture .demo-canvas {
     background-image: radial-gradient(var(--muted-text) 1.5px, transparent 1.5px);
     background-size: 15px 15px;
+    animation: jitter 0.2s steps(2) infinite;
 }
 
-/* Space */
+/* Space: Parallax Depth */
 .element-space .demo-canvas { perspective: 400px; }
 .element-space .demo-canvas::before {
     content: ''; width: 80px; height: 80px; background: var(--text-color);
     position: absolute; top: 30%; left: 30%; z-index: 2;
+    /* Static foreground */
 }
 .element-space .demo-canvas::after {
     content: ''; width: 80px; height: 80px; background: var(--accent-color);
-    position: absolute; top: 20%; right: 30%; z-index: 1; transform: translateZ(-100px); opacity: 0.7;
+    position: absolute; top: 20%; right: 30%; z-index: 1;
+    animation: perspectiveMove 4s ease-in-out infinite;
+    opacity: 0.7;
 }
 
-/* Value */
+/* Value: Gradient Pulse */
 .element-value .demo-canvas {
     background: linear-gradient(to right, #fff, #000);
+    background-size: 200% 100%;
+    animation: gradientFlow 5s alternate infinite;
 }
 
 /* Principles */
-.principle-balance .demo-canvas { gap: 40px; }
+
+/* Balance: Teeter-Totter */
+.principle-balance .demo-canvas { 
+    /* We animate a wrapper or use the pseudo elements if possible. 
+       Since canvas is flex, let's rotate the whole canvas content? No, just pseudo-elements relative to center.
+    */
+    display: flex; justify-content: center; align-items: center; gap: 40px;
+}
+/* To animate the "balance" of the whole group, we can rotate the canvas slightly */
+.principle-balance .demo-canvas {
+    animation: balanceTilt 3s ease-in-out infinite;
+}
 .principle-balance .demo-canvas::before, .principle-balance .demo-canvas::after {
     content: ''; width: 50px; height: 50px; background: var(--text-color); border-radius: 50%;
 }
 
+/* Contrast: Pulsing Core */
 .principle-contrast .demo-canvas::before {
     content: ''; width: 150px; height: 150px; background: var(--text-color); border-radius: 8px; position: absolute;
 }
 .principle-contrast .demo-canvas::after {
-    content: ''; width: 40px; height: 40px; background: var(--accent-color); border-radius: 50%; position: absolute; z-index: 2; box-shadow: 0 0 0 8px #fff;
+    content: ''; width: 40px; height: 40px; background: var(--accent-color); border-radius: 50%; 
+    position: absolute; z-index: 2; box-shadow: 0 0 0 8px #fff;
+    animation: pulse 1s infinite alternate;
 }
 
+/* Emphasis: Glowing Focal Point */
 .principle-emphasis .demo-canvas { background-image: radial-gradient(#ccc 2px, transparent 2px); background-size: 30px 30px; }
 .principle-emphasis .demo-canvas::before {
-    content: ''; width: 30px; height: 30px; background: var(--accent-color); border-radius: 50%; position: absolute; top: 40%; left: 60%; box-shadow: 0 0 15px rgba(179, 137, 44, 0.6);
+    content: ''; width: 30px; height: 30px; background: var(--accent-color); border-radius: 50%; position: absolute; top: 40%; left: 60%; 
+    box-shadow: 0 0 15px rgba(179, 137, 44, 0.6);
+    animation: pulse 1.5s ease-in-out infinite;
 }
 
-.principle-movement .demo-canvas { background: repeating-linear-gradient(45deg, #fff, #fff 20px, rgba(6,23,53,0.1) 20px, rgba(6,23,53,0.1) 40px); }
-.principle-movement .demo-canvas::before { content: '→'; font-size: 6rem; color: var(--text-color); }
+/* Movement: Flowing Arrow */
+.principle-movement .demo-canvas { 
+    background: repeating-linear-gradient(45deg, #fff, #fff 20px, rgba(6,23,53,0.1) 20px, rgba(6,23,53,0.1) 40px); 
+    /* Animate background stripes */
+    background-size: 200% 200%;
+    animation: gradientFlow 5s linear infinite;
+}
+.principle-movement .demo-canvas::before { 
+    content: '→'; font-size: 6rem; color: var(--text-color); 
+    animation: slideRight 2s linear infinite;
+}
 
-.principle-pattern .demo-canvas { background-image: url('../img/glider.png'); background-size: 40px 40px; opacity: 0.1; }
+/* Pattern: Glider Life */
+.principle-pattern .demo-canvas { 
+    background-image: url('../img/glider.png'); 
+    background-size: 40px 40px; 
+    opacity: 0.2; 
+    animation: scrollBg 2s linear infinite;
+}
 
+/* Rhythm: Bouncing Ball */
 .principle-rhythm .demo-canvas { display: flex; align-items: flex-end; gap: 15px; height: 150px; }
 .principle-rhythm .demo-canvas::before {
     content: ''; width: 20px; height: 20px; background: var(--text-color); border-radius: 50%;
     box-shadow: 40px -30px 0 0 var(--text-color), 80px -10px 0 0 var(--text-color), 120px -50px 0 0 var(--text-color);
+    /* We animate the shadow offsets to make them "bounce"? Hard. 
+       Better: Animate the element itself up and down. */
+    animation: bounce 0.8s infinite alternate;
 }
 
-.principle-unity .demo-canvas { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; width: 100px; }
+/* Unity: Group Breathing */
+.principle-unity .demo-canvas { 
+    display: grid; grid-template-columns: 1fr 1fr; gap: 10px; width: 100px; 
+    animation: unite 3s ease-in-out infinite;
+}
 .principle-unity .demo-canvas::before { content: ''; width: 40px; height: 40px; background: var(--muted-text); box-shadow: 0 50px 0 var(--muted-text); }
 .principle-unity .demo-canvas::after { content: ''; width: 40px; height: 40px; background: var(--muted-text); box-shadow: 0 50px 0 var(--accent-color); }
+
+
 
 /* Responsive Adjustments */
 @media (max-width: 800px) {
