@@ -1,18 +1,17 @@
 :root {
-    /* "Modern Gallery" Theme: Light base for readability, Deep Blue text, Gold accents */
-    --bg-color: #fdfdfd;       /* Soft White */
-    --card-bg: #ffffff;        /* Pure White */
-    --text-color: #061735;     /* Deep Blue as primary text (High Contrast) */
-    --muted-text: #4a5b7c;     /* Lighter blue-grey for secondary text */
-    --accent-color: #B3892C;   /* Gold for interactive elements */
-    --border-color: #e2e8f0;   /* Light grey for structure */
+    /* "Modern Gallery" Theme: Compact Viewport Edition */
+    --bg-color: #fdfdfd;
+    --card-bg: #ffffff;
+    --text-color: #061735;
+    --muted-text: #4a5b7c;
+    --accent-color: #B3892C;
+    --border-color: #e2e8f0;
     
     --font-serif: 'Merriweather', 'Georgia', serif;
     --font-sans: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     
     --border-radius: 8px;
     --shadow-sm: 0 1px 3px rgba(0,0,0,0.1);
-    --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
 }
 
 body {
@@ -21,30 +20,20 @@ body {
     padding: 0;
     background-color: var(--bg-color);
     color: var(--text-color);
-    line-height: 1.8; /* Increased for readability */
-    font-size: 18px;  /* Larger base font */
+    line-height: 1.5; /* Compact line height */
+    font-size: 16px;  /* Standard readable size */
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden; /* Prevent horizontal scroll */
 }
 
 /* Typography */
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3 {
     font-family: var(--font-serif);
     color: var(--text-color);
-    line-height: 1.2;
     margin-top: 0;
-}
-
-h1 {
-    font-weight: 900;
-    letter-spacing: -0.02em;
-}
-
-h2 {
-    font-weight: 700;
-}
-
-p {
-    margin-bottom: 1.5rem;
-    color: var(--muted-text); /* Softer on the eyes than pure black/blue */
+    line-height: 1.1;
 }
 
 a {
@@ -52,46 +41,43 @@ a {
     text-decoration: none;
     font-weight: 600;
     transition: color 0.2s ease;
-    border-bottom: 2px solid transparent;
 }
 
 a:hover {
     color: #061735;
-    border-bottom-color: var(--accent-color);
 }
 
-/* Layout - Header */
+/* Header - Ultra Compact */
 header {
     background: #fff;
     border-bottom: 1px solid var(--border-color);
-    padding: 1.5rem 0;
-    position: sticky;
-    top: 0;
-    z-index: 100;
+    padding: 0.5rem 1rem;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     box-shadow: var(--shadow-sm);
 }
 
 .logo-container {
     display: flex;
-    justify-content: center;
     align-items: center;
-    gap: 1rem;
-    margin-bottom: 1rem;
+    gap: 0.8rem;
+    margin: 0;
 }
 
 .logo {
-    width: 48px;
-    height: 48px;
+    width: 32px;
+    height: 32px;
     image-rendering: pixelated;
-    /* Use CSS filter to turn the black/white glider into Deep Blue */
     filter: sepia(100%) hue-rotate(190deg) saturate(500%) brightness(0.7) contrast(2); 
 }
 
 header h1 a {
-    font-size: 2rem;
+    font-size: 1.2rem;
     color: var(--text-color);
-    text-transform: none; /* Sentence case is more readable */
     font-family: var(--font-serif);
+    font-weight: 900;
 }
 
 nav ul {
@@ -99,150 +85,154 @@ nav ul {
     padding: 0;
     margin: 0;
     display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
     gap: 1.5rem;
 }
 
 nav li {
     display: flex;
     align-items: center;
-    gap: 0.75rem; /* Space between links within the same category */
+    gap: 0.5rem;
 }
 
 nav span {
-    font-size: 0.85rem;
+    font-size: 0.75rem;
     font-weight: bold;
     color: var(--accent-color);
     text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-right: 0.25rem;
+    display: none; /* Hide labels to save space on small screens, or keep if room */
 }
+@media (min-width: 900px) { nav span { display: inline; } }
 
 nav a {
     color: var(--muted-text);
-    font-size: 0.95rem;
-    font-weight: 500;
-    padding: 0.2rem 0.4rem;
-    border-radius: 4px;
+    font-size: 0.85rem;
+    padding: 0.2rem 0.5rem;
 }
 
 nav a:hover {
+    background: #f0f4f8;
+    border-radius: 4px;
     color: var(--text-color);
 }
 
-/* Layout - Main */
+/* Main Layout - Flex Grow to fill space */
 main {
-    max-width: 800px; /* Narrower column for optimal reading length */
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center content vertically */
+    padding: 1rem 2rem;
+    max-width: 1200px;
+    width: 100%;
     margin: 0 auto;
-    padding: 4rem 2rem;
-    min-height: 80vh;
+    box-sizing: border-box;
 }
 
 footer {
     text-align: center;
-    padding: 3rem 0;
+    padding: 0.5rem 0;
     color: var(--muted-text);
-    font-size: 0.9rem;
+    font-size: 0.75rem;
     border-top: 1px solid var(--border-color);
     background: #fff;
+    flex-shrink: 0;
 }
 
-/* Home Page */
+/* Home Page - Compact Grid */
 .hero {
     text-align: center;
-    margin-bottom: 5rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .hero h2 {
-    font-size: 3.5rem;
-    margin-bottom: 1rem;
-    color: var(--text-color);
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
 }
 
 .hero p {
-    font-size: 1.5rem;
+    font-size: 1.1rem;
     color: var(--muted-text);
-    max-width: 600px;
-    margin: 0 auto;
+    margin-bottom: 2rem;
 }
 
 .grid-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2.5rem;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: left;
 }
 
 .card {
     background: var(--card-bg);
-    padding: 2.5rem;
+    padding: 1.5rem;
     border-radius: var(--border-radius);
     border: 1px solid var(--border-color);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-md);
-    border-color: var(--accent-color);
+    box-shadow: var(--shadow-sm);
 }
 
 .card h3 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-    color: var(--text-color);
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
     border-bottom: 2px solid var(--accent-color);
-    padding-bottom: 0.5rem;
+    padding-bottom: 0.2rem;
     display: inline-block;
 }
 
 .card ul {
     list-style: none;
     padding: 0;
-    margin-top: 1rem;
+    margin: 0;
+    columns: 2; /* Split list into 2 columns for compactness */
 }
 
 .card li {
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.25rem;
+    font-size: 0.9rem;
 }
 
-.card a {
-    color: var(--text-color);
-    font-weight: 500;
+/* Detail Pages - Split Layout */
+.detail-container {
+    display: grid;
+    grid-template-columns: 40% 60%; /* Text left, Image right */
+    gap: 3rem;
+    align-items: center;
+    height: 100%;
 }
 
-.card a:hover {
-    color: var(--accent-color);
-}
-
-/* Detail Pages */
 .detail-container h2 {
-    font-size: 4rem;
-    margin-bottom: 1.5rem;
-    color: var(--text-color);
+    font-size: 3rem;
+    margin-bottom: 1rem;
 }
 
 .definition {
-    font-size: 1.5rem;
-    font-weight: 300;
+    font-size: 1.2rem;
+    line-height: 1.4;
     color: var(--muted-text);
-    line-height: 1.6;
-    margin-bottom: 4rem;
+    margin-bottom: 2rem;
     border-left: 4px solid var(--accent-color);
-    padding-left: 2rem;
+    padding-left: 1rem;
 }
 
 .visual-demo {
     background: #f8fafc;
     border: 1px solid var(--border-color);
     border-radius: var(--border-radius);
-    padding: 1rem; /* Frame effect */
-    margin-bottom: 3rem;
+    padding: 0.5rem;
+    height: 100%;
+    max-height: 60vh; /* Limit height to avoid overflow */
+    display: flex;
+    flex-direction: column;
 }
 
 .demo-canvas {
     width: 100%;
-    height: 450px;
+    flex-grow: 1;
+    min-height: 300px; /* Ensure at least some height */
     background: #fff;
     border: 1px solid #eee;
     display: flex;
@@ -250,183 +240,117 @@ footer {
     align-items: center;
     overflow: hidden;
     position: relative;
-    /* Soft shadow inside the frame */
-    box-shadow: inset 0 0 20px rgba(0,0,0,0.02);
 }
 
 .navigation a {
     display: inline-flex;
     align-items: center;
-    padding: 0.75rem 1.5rem;
+    padding: 0.5rem 1rem;
     background: var(--text-color);
     color: #fff;
     border-radius: 50px;
     font-weight: 600;
-    font-size: 0.9rem;
-    transition: background 0.2s;
+    font-size: 0.85rem;
 }
 
 .navigation a:hover {
     background: var(--accent-color);
-    border-bottom: none;
-    transform: translateY(-2px);
 }
 
 
-/* --- CSS Art (Adapted for Light Mode) --- */
+/* --- CSS Art (Responsive & Scalable) --- */
 
-/* Line: Deep Blue on White */
+/* Line */
 .element-line .demo-canvas {
     background-image: 
         repeating-linear-gradient(90deg, transparent, transparent 49px, var(--text-color) 50px),
         linear-gradient(0deg, transparent 49%, var(--text-color) 50%, transparent 51%);
-    background-size: 50px 100%, 100% 2px; /* Thinner horizontal line */
+    background-size: 50px 100%, 100% 2px;
 }
 
-/* Shape: Gold Triangle, Blue Circle */
+/* Shape */
 .element-shape .demo-canvas::before {
-    content: '';
-    position: absolute;
-    width: 0; height: 0;
-    border-left: 60px solid transparent;
-    border-right: 60px solid transparent;
-    border-bottom: 100px solid var(--accent-color);
-    left: 25%;
+    content: ''; position: absolute; left: 20%;
+    width: 0; height: 0; border-left: 50px solid transparent; border-right: 50px solid transparent; border-bottom: 80px solid var(--accent-color);
 }
 .element-shape .demo-canvas::after {
-    content: '';
-    position: absolute;
-    width: 120px; height: 120px;
-    background: var(--text-color);
-    border-radius: 50%;
-    right: 25%;
-    mix-blend-mode: multiply; /* Nice blend effect on white */
-    opacity: 0.8;
+    content: ''; position: absolute; right: 20%;
+    width: 100px; height: 100px; background: var(--text-color); border-radius: 50%; opacity: 0.8; mix-blend-mode: multiply;
 }
 
-/* Form: Gradient Sphere */
+/* Form */
 .element-form .demo-canvas::before {
-    content: '';
-    width: 140px; height: 140px;
-    border-radius: 50%;
+    content: ''; width: 30%; padding-bottom: 30%; border-radius: 50%;
     background: radial-gradient(circle at 30% 30%, #fff, var(--text-color));
-    box-shadow: 0 20px 40px rgba(6, 23, 53, 0.4);
+    box-shadow: 0 10px 20px rgba(6, 23, 53, 0.4);
 }
 
-/* Color: Gold, Blue, and Mix */
+/* Color */
 .element-color .demo-canvas {
-    background: linear-gradient(to right, #fff 0%, #fff 10%, var(--accent-color) 10%, var(--accent-color) 50%, var(--text-color) 50%, var(--text-color) 90%, #fff 90%);
+    background: linear-gradient(to right, #fff, var(--accent-color), var(--text-color));
 }
 
-/* Texture: Dot Pattern */
+/* Texture */
 .element-texture .demo-canvas {
-    background-color: #fff;
     background-image: radial-gradient(var(--muted-text) 1.5px, transparent 1.5px);
     background-size: 15px 15px;
 }
 
-/* Space: Perspective Grid */
-.element-space .demo-canvas {
-    perspective: 600px;
-    background: 
-        linear-gradient(rgba(6,23,53,0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(6,23,53,0.05) 1px, transparent 1px);
-    background-size: 40px 40px;
-}
+/* Space */
+.element-space .demo-canvas { perspective: 400px; }
 .element-space .demo-canvas::before {
     content: ''; width: 80px; height: 80px; background: var(--text-color);
-    position: absolute; top: 100px; left: 30%; z-index: 2;
-    box-shadow: 10px 10px 20px rgba(0,0,0,0.2);
+    position: absolute; top: 30%; left: 30%; z-index: 2;
 }
 .element-space .demo-canvas::after {
     content: ''; width: 80px; height: 80px; background: var(--accent-color);
-    position: absolute; top: 80px; right: 30%; z-index: 1;
-    transform: translateZ(-150px);
-    opacity: 0.7;
+    position: absolute; top: 20%; right: 30%; z-index: 1; transform: translateZ(-100px); opacity: 0.7;
 }
 
-/* Value: Grayscale Scale */
+/* Value */
 .element-value .demo-canvas {
-    background: linear-gradient(to right, #ffffff, #000000);
+    background: linear-gradient(to right, #fff, #000);
 }
-
 
 /* Principles */
-
-/* Balance: Symmetrical weights */
-.principle-balance .demo-canvas {
-    display: flex; justify-content: center; align-items: center; gap: 60px;
-}
-.principle-balance .demo-canvas::before {
-    content: ''; width: 60px; height: 60px; background: var(--text-color); border-radius: 50%;
-}
-.principle-balance .demo-canvas::after {
-    content: ''; width: 60px; height: 60px; background: var(--text-color); border-radius: 50%;
+.principle-balance .demo-canvas { gap: 40px; }
+.principle-balance .demo-canvas::before, .principle-balance .demo-canvas::after {
+    content: ''; width: 50px; height: 50px; background: var(--text-color); border-radius: 50%;
 }
 
-/* Contrast: Small Gold vs Large Dark */
-.principle-contrast .demo-canvas {
-    display: flex; align-items: center; justify-content: center;
-}
 .principle-contrast .demo-canvas::before {
-    content: ''; width: 200px; height: 200px; background: var(--text-color); border-radius: 8px;
-    position: absolute;
+    content: ''; width: 150px; height: 150px; background: var(--text-color); border-radius: 8px; position: absolute;
 }
 .principle-contrast .demo-canvas::after {
-    content: ''; width: 50px; height: 50px; background: var(--accent-color); border-radius: 50%;
-    position: absolute; z-index: 2;
-    box-shadow: 0 0 0 10px #fff;
+    content: ''; width: 40px; height: 40px; background: var(--accent-color); border-radius: 50%; position: absolute; z-index: 2; box-shadow: 0 0 0 8px #fff;
 }
 
-/* Emphasis: Breaking the pattern */
-.principle-emphasis .demo-canvas {
-    background-image: radial-gradient(#ccc 2px, transparent 2px);
-    background-size: 30px 30px;
-}
+.principle-emphasis .demo-canvas { background-image: radial-gradient(#ccc 2px, transparent 2px); background-size: 30px 30px; }
 .principle-emphasis .demo-canvas::before {
-    content: ''; width: 40px; height: 40px; background: var(--accent-color);
-    border-radius: 50%; position: absolute; top: 40%; left: 60%;
-    box-shadow: 0 0 20px rgba(179, 137, 44, 0.6);
+    content: ''; width: 30px; height: 30px; background: var(--accent-color); border-radius: 50%; position: absolute; top: 40%; left: 60%; box-shadow: 0 0 15px rgba(179, 137, 44, 0.6);
 }
 
-/* Movement: Dashed Line */
-.principle-movement .demo-canvas {
-    background: repeating-linear-gradient(45deg, #fff, #fff 20px, rgba(6,23,53,0.1) 20px, rgba(6,23,53,0.1) 40px);
-}
-.principle-movement .demo-canvas::before {
-    content: '→'; font-size: 8rem; color: var(--text-color); font-family: var(--font-sans);
-}
+.principle-movement .demo-canvas { background: repeating-linear-gradient(45deg, #fff, #fff 20px, rgba(6,23,53,0.1) 20px, rgba(6,23,53,0.1) 40px); }
+.principle-movement .demo-canvas::before { content: '→'; font-size: 6rem; color: var(--text-color); }
 
-/* Pattern: Glider Tiling (Subtle) */
-.principle-pattern .demo-canvas {
-    background-image: url('../img/glider.png');
-    background-size: 50px 50px;
-    image-rendering: pixelated;
-    opacity: 0.1; /* Very subtle background texture */
-}
+.principle-pattern .demo-canvas { background-image: url('../img/glider.png'); background-size: 40px 40px; opacity: 0.1; }
 
-/* Rhythm: Bouncing */
-.principle-rhythm .demo-canvas {
-    display: flex; align-items: flex-end; justify-content: center; gap: 20px; height: 200px;
-}
+.principle-rhythm .demo-canvas { display: flex; align-items: flex-end; gap: 15px; height: 150px; }
 .principle-rhythm .demo-canvas::before {
-    content: ''; width: 30px; height: 30px; background: var(--text-color); border-radius: 50%;
-    box-shadow: 50px -40px 0 0 var(--text-color), 100px -10px 0 0 var(--text-color), 150px -60px 0 0 var(--text-color);
+    content: ''; width: 20px; height: 20px; background: var(--text-color); border-radius: 50%;
+    box-shadow: 40px -30px 0 0 var(--text-color), 80px -10px 0 0 var(--text-color), 120px -50px 0 0 var(--text-color);
 }
 
-/* Unity: Grouping */
-.principle-unity .demo-canvas {
-    display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; width: 140px;
-}
-.principle-unity .demo-canvas::before,
-.principle-unity .demo-canvas::after {
-    content: ''; width: 60px; height: 60px; background: var(--muted-text); border-radius: 4px;
-}
-/* We need 4 items, let's use box-shadow to simulate more */
-.principle-unity .demo-canvas::before {
-    box-shadow: 0 75px 0 var(--muted-text);
-}
-.principle-unity .demo-canvas::after {
-    box-shadow: 0 75px 0 var(--accent-color); /* One accent to unify/contrast */
-    background: var(--muted-text);
+.principle-unity .demo-canvas { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; width: 100px; }
+.principle-unity .demo-canvas::before { content: ''; width: 40px; height: 40px; background: var(--muted-text); box-shadow: 0 50px 0 var(--muted-text); }
+.principle-unity .demo-canvas::after { content: ''; width: 40px; height: 40px; background: var(--muted-text); box-shadow: 0 50px 0 var(--accent-color); }
+
+/* Responsive Adjustments */
+@media (max-width: 800px) {
+    body { height: auto; overflow-x: auto; } /* Allow scrolling on mobile */
+    .detail-container { grid-template-columns: 1fr; gap: 2rem; }
+    header { flex-direction: column; padding: 1rem; }
+    nav ul { gap: 1rem; flex-wrap: wrap; justify-content: center; }
+    .grid-container { grid-template-columns: 1fr; }
+    .card ul { columns: 1; }
 }
