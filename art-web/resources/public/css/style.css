@@ -534,6 +534,244 @@ a.button {
     transition: left 0.1s ease-out;
 }
 
+/* --- Batch 1: Elements & Principles Interactions --- */
+/* Line: Tension/Vibration (Y axis) */
+.js-active .element-line .demo-canvas::before {
+    /* Speed up animation based on Y. 0.05s (fast) to 0.5s (slow) */
+    animation-duration: calc(0.05s + var(--int-y, 0.5) * 0.45s);
+}
+
+/* Shape: Drift (X/Y axis) */
+.js-active .element-shape .demo-canvas::before {
+    animation: none;
+    top: calc(var(--int-y, 0.5) * 80% + 10%);
+    left: calc(var(--int-x, 0.5) * 80% + 10%);
+    transition: top 0.1s, left 0.1s;
+}
+.js-active .element-shape .demo-canvas::after {
+    animation: none;
+    /* Mirror movement */
+    top: calc((1 - var(--int-y, 0.5)) * 80% + 10%);
+    left: calc((1 - var(--int-x, 0.5)) * 80% + 10%);
+    transition: top 0.1s, left 0.1s;
+}
+
+/* Form: Light Source (X/Y axis) */
+.js-active .element-form .demo-canvas::before {
+    animation: none;
+    /* Move the radial gradient center */
+    background: radial-gradient(circle at calc(var(--int-x, 0.5) * 100%) calc(var(--int-y, 0.5) * 100%), #fff, #061735);
+    background-size: 200% 200%;
+}
+
+/* Color: Hue (X axis) */
+.js-active .element-color .demo-canvas::before {
+    animation: none;
+    filter: hue-rotate(calc(var(--int-x, 0.5) * 360deg));
+}
+.js-active .element-color .demo-canvas::after {
+    animation: none;
+    filter: hue-rotate(calc(var(--int-x, 0.5) * -360deg));
+}
+
+/* Texture: Interference (X axis) */
+.js-active .element-texture .demo-canvas::before {
+    animation: none;
+    /* Rotate top layer based on X */
+    transform: rotate(calc(var(--int-x, 0.5) * 90deg));
+}
+
+/* Space: Volume (Y axis) */
+.js-active .element-space .demo-canvas::after {
+    animation: none;
+    /* Scale the inner box */
+    transform: scale(calc(0.5 + var(--int-y, 0.5)));
+}
+
+/* Value: Spotlight (X/Y axis) */
+.js-active .element-value .demo-canvas {
+    animation: none;
+    -webkit-mask-position: calc(var(--int-x, 0.5) * 100%) calc(var(--int-y, 0.5) * 100%);
+    mask-position: calc(var(--int-x, 0.5) * 100%) calc(var(--int-y, 0.5) * 100%);
+}
+
+/* Balance: Fulcrum (X axis) */
+.js-active .principle-balance .demo-canvas::after {
+    animation: none;
+    /* Orbit around different points */
+    transform-origin: calc(var(--int-x, 0.5) * 100px) 50%;
+    transform: rotate(calc(var(--time, 0) * 1deg)); /* Needs time, fallback to simple rotation override if time missing */
+    animation: orbit 5s linear infinite; /* Just speed change or keep constant? Let's offset position */
+    left: calc(var(--int-x, 0.5) * 60% + 20%);
+}
+
+/* Contrast: Focus (Y axis) */
+.js-active .principle-contrast .demo-canvas::before {
+    animation: none;
+    filter: blur(calc(var(--int-y, 0.5) * 20px));
+}
+
+/* Emphasis: Anomaly Position (X/Y axis) */
+.js-active .principle-emphasis .demo-canvas::before {
+    top: calc(var(--int-y, 0.5) * 80% + 10%);
+    left: calc(var(--int-x, 0.5) * 80% + 10%);
+    transition: top 0.1s, left 0.1s;
+}
+
+/* Movement: Velocity (X axis) */
+.js-active .principle-movement .demo-canvas::before {
+    /* Speed control */
+    animation-duration: calc(0.5s + var(--int-x, 0.5) * 5s);
+}
+
+/* Pattern: Distortion (X/Y axis) */
+.js-active .principle-pattern .demo-canvas {
+    animation: none;
+    background-position: calc(var(--int-x, 0) * 100px) calc(var(--int-y, 0) * 100px);
+}
+
+/* Rhythm: Tempo (X axis) */
+.js-active .principle-rhythm .demo-canvas::before {
+    animation-duration: calc(0.2s + var(--int-x, 0.5) * 2s);
+}
+.js-active .principle-rhythm .demo-canvas::after {
+    animation-duration: calc(0.3s + var(--int-x, 0.5) * 3s);
+}
+
+/* Unity: Chaos vs Order (Y axis) */
+.js-active .principle-unity .demo-canvas::before {
+    animation: none;
+    /* Interpolate between chaotic (rotated/offset) and unified (0,0) */
+    transform: translate(calc(var(--int-y, 0.5) * -40px), calc(var(--int-y, 0.5) * -40px)) rotate(calc(var(--int-y, 0.5) * 15deg));
+    border-color: rgba(0,0,0, calc(1 - var(--int-y, 0.5) * 0.5));
+}
+.js-active .principle-unity .demo-canvas::after {
+    animation: none;
+    transform: translate(calc(var(--int-y, 0.5) * 40px), calc(var(--int-y, 0.5) * 40px)) rotate(calc(var(--int-y, 0.5) * -15deg));
+}
+
+/* --- Batch 2: Perception & Structure Interactions --- */
+/* Closure: Gap Size (X axis) */
+.js-active .perception-closure .demo-canvas::before {
+    animation: none;
+    transform: rotate(calc(var(--int-x, 0.5) * 360deg));
+    /* Change border style to simulate closing gaps? Hard with border-dashed. 
+       Instead, we rotate it to align/misalign or change color opacity. */
+    border-color: rgba(179, 137, 44, calc(0.2 + var(--int-x, 0.5)));
+}
+
+/* Similarity: Highlight (X axis) */
+.js-active .perception-similarity .demo-canvas::after {
+    animation: none;
+    /* Scale based on X to show "pop out" */
+    transform: scale(calc(1 + var(--int-x, 0.5) * 0.5));
+    opacity: calc(0.5 + var(--int-x, 0.5));
+}
+
+/* Figure-Ground: Shift (X axis) */
+.js-active .perception-figure-ground .demo-canvas {
+    animation: none;
+    background-position: calc(var(--int-x, 0.5) * 100%) 50%;
+}
+
+/* Continuity: Flow (Y axis) */
+.js-active .perception-continuity .demo-canvas::before {
+    animation: none;
+    /* Change angle of flow */
+    transform: rotate(calc((var(--int-y, 0.5) - 0.5) * 45deg));
+    background-position: calc(var(--int-x, 0) * 100px) 0;
+}
+
+/* Golden Ratio: Zoom (X axis) */
+.js-active .structure-golden-ratio .demo-canvas::before {
+    animation: none;
+    /* Manual zoom/unwind */
+    transform: rotate(calc(var(--int-x, 0.5) * 720deg)) scale(calc(0.2 + var(--int-x, 0.5)));
+}
+
+/* Rule of Thirds: Focal Point (X/Y axis) */
+.js-active .structure-rule-of-thirds .demo-canvas::after {
+    animation: none;
+    /* Snap to nearest third? Smooth move is better interaction */
+    top: calc(var(--int-y, 0.5) * 100%);
+    left: calc(var(--int-x, 0.5) * 100%);
+}
+
+/* Hierarchy: Flattening (Y axis) */
+.js-active .structure-hierarchy .demo-canvas::before {
+    /* Large circle shrinks */
+    width: calc(120px - var(--int-y, 0.5) * 60px);
+    height: calc(120px - var(--int-y, 0.5) * 60px);
+}
+.js-active .structure-hierarchy .demo-canvas::after {
+    /* Small circle grows */
+    width: calc(60px + var(--int-y, 0.5) * 60px);
+    height: calc(60px + var(--int-y, 0.5) * 60px);
+}
+
+/* Economy: Clutter Removal (X axis) */
+.js-active .structure-economy .demo-canvas::after {
+    animation: none;
+    opacity: calc(1 - var(--int-x, 0.5)); /* X=1 clears the clutter */
+}
+
+/* Variety: Mutation Speed (X axis) */
+.js-active .structure-variety .demo-canvas::before {
+    animation-duration: calc(0.5s + (1 - var(--int-x, 0.5)) * 10s);
+}
+
+/* --- Batch 3: Spatial & Color Interactions --- */
+/* Atmospheric Perspective: Fog Density (Y axis) */
+.js-active .spatial-depth-atmospheric-perspective .demo-canvas::before {
+    animation: none;
+    /* Move layers closer/further or change opacity */
+    opacity: calc(1 - var(--int-y, 0.5));
+    transform: translateX(calc((var(--int-x, 0.5) - 0.5) * 20px));
+}
+.js-active .spatial-depth-atmospheric-perspective .demo-canvas::after {
+    animation: none;
+    opacity: calc(1 - var(--int-y, 0.5));
+    transform: translateX(calc((var(--int-x, 0.5) - 0.5) * -20px));
+}
+
+/* Foreshortening: 3D Rotation (X/Y axis) */
+.js-active .spatial-depth-foreshortening .demo-canvas::before {
+    animation: none;
+    transform: rotateX(calc((var(--int-y, 0.5) - 0.5) * 180deg)) rotateY(calc((var(--int-x, 0.5) - 0.5) * 180deg));
+}
+
+/* Overlapping: Explosion (X axis) */
+.js-active .spatial-depth-overlapping .demo-canvas::before {
+    animation: none;
+    /* Move background circle left/back */
+    transform: translateX(calc((var(--int-x, 0.5) - 0.5) * -100px)) scale(calc(1 - var(--int-x, 0.5) * 0.5));
+    z-index: 1;
+}
+.js-active .spatial-depth-overlapping .demo-canvas::after {
+    /* Move foreground circle right/forward */
+    transform: translateX(calc((var(--int-x, 0.5) - 0.5) * 100px)) scale(calc(1 + var(--int-x, 0.5) * 0.2));
+    z-index: 2;
+}
+
+/* Saturation: Intensity (Y axis) */
+.js-active .color-dynamics-saturation .demo-canvas::before {
+    animation: none;
+    filter: grayscale(calc(1 - var(--int-y, 0.5)));
+    transform: scale(calc(0.8 + var(--int-y, 0.5) * 0.4));
+}
+
+/* Simultaneous Contrast: Split Position (X axis) */
+.js-active .color-dynamics-simultaneous-contrast .demo-canvas {
+    /* Move the gradient stop */
+    background: linear-gradient(90deg, #061735 calc(var(--int-x, 0.5) * 100%), #B3892C calc(var(--int-x, 0.5) * 100%));
+}
+.js-active .color-dynamics-simultaneous-contrast .demo-canvas::before {
+    left: calc(var(--int-x, 0.5) * 50% - 20px);
+}
+.js-active .color-dynamics-simultaneous-contrast .demo-canvas::after {
+    left: calc(50% + var(--int-x, 0.5) * 50% - 20px);
+}
+
 /* Responsive Adjustments */
 @media (max-width: 800px) {
     body { height: auto; overflow-x: auto; }
