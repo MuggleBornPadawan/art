@@ -348,10 +348,64 @@ footer {
 .principle-unity .demo-canvas::before { var(--x): -40px; var(--y): -40px; var(--r): 15deg; animation: gestalt 5s ease-in-out infinite; }
 .principle-unity .demo-canvas::after { var(--x): 40px; var(--y): 40px; var(--r): -15deg; animation: gestalt 5s ease-in-out infinite; }
 
-/* --- The Synthesis: Composition --- */
-.composition-composition .demo-canvas { background: #061735; background-image: linear-gradient(var(--accent-color) 1px, transparent 1px), linear-gradient(90deg, var(--accent-color) 1px, transparent 1px); background-size: 100px 100px; background-position: center; }
-.composition-composition .demo-canvas::before { content: ''; width: 60px; height: 60px; border: 4px solid var(--accent-color); border-radius: 50%; position: absolute; animation: chaosToOrder 8s cubic-bezier(0.2, 0, 0.2, 1) infinite; }
-.composition-composition .demo-canvas::after { content: ''; width: 100px; height: 100px; background: var(--text-color); mix-blend-mode: overlay; position: absolute; animation: anchorSlide 8s cubic-bezier(0.2, 0, 0.2, 1) infinite; }
+/* --- The Synthesis: Composition (The Dialectic of Form) --- */
+.composition-composition .demo-canvas {
+    background: #061735;
+    position: relative;
+    /* Clean slate */
+}
+
+/* 1. The Thesis: The Grid (Logic) */
+.composition-composition .demo-canvas::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200px; height: 200px;
+    background-image: 
+        linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px);
+    background-size: 40px 40px;
+    border: 1px solid rgba(255,255,255,0.2);
+    animation: thesisGrid 12s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+/* 2. The Antithesis: The Disruptor (Instinct) */
+.composition-composition .demo-canvas::after {
+    content: '';
+    position: absolute;
+    width: 80px; height: 80px;
+    background: var(--accent-color);
+    border-radius: 50%;
+    /* Start invisible */
+    opacity: 0;
+    box-shadow: 0 0 30px rgba(179, 137, 44, 0.4);
+    animation: antithesisShape 12s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+/* Animation Cycle: 12 Seconds */
+@keyframes thesisGrid {
+    0% { width: 0; height: 0; opacity: 0; transform: translate(-50%, -50%) rotate(0deg); }
+    10% { width: 200px; height: 200px; opacity: 1; transform: translate(-50%, -50%) rotate(0deg); }
+    30% { transform: translate(-50%, -50%) rotate(0deg); border-color: rgba(255,255,255,0.2); }
+    /* React to Antithesis */
+    40% { transform: translate(-50%, -50%) rotate(0deg) scale(0.9); }
+    60% { transform: translate(-40%, -40%) rotate(15deg); border-color: rgba(255,255,255,0.6); } /* Synthesis: Grid shifts to accommodate */
+    80% { transform: translate(-40%, -40%) rotate(15deg); opacity: 1; }
+    90% { opacity: 0; transform: translate(-40%, -40%) rotate(15deg) scale(1.1); }
+    100% { opacity: 0; }
+}
+
+@keyframes antithesisShape {
+    0%, 25% { transform: translate(150px, 100px) scale(0); opacity: 0; }
+    /* Disruption enters */
+    35% { transform: translate(50px, 20px) scale(1); opacity: 1; }
+    /* Synthesis Lock */
+    60% { transform: translate(-20px, 20px) scale(1); } /* Moves to Golden Ratio-ish spot relative to new grid */
+    80% { transform: translate(-20px, 20px) scale(1); opacity: 1; }
+    90% { transform: translate(-20px, 20px) scale(0); opacity: 0; }
+    100% { opacity: 0; }
+}
 
 /* Responsive Adjustments */
 @media (max-width: 800px) {

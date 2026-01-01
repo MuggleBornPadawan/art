@@ -26,7 +26,7 @@
    {:id "unity" :title "Unity" :desc "The Gestalt moment. The fleeting instant where disparate chaotic elements align to form a coherent whole, proving the sum is greater than its parts."}])
 
 (def composition
-  {:id "composition" :title "Composition" :desc "The Synthesis. Composition is the act of arranging the Elements according to the Principles. It is the sentence constructed from the grammar of art—the deliberate orchestration of visual forces to create meaning, emotion, and aesthetic resolve."})
+  {:id "composition" :title "Composition" :desc "The Arrested Moment. Composition is not a formula; it is the freezing of dynamic forces in a state of precarious equilibrium. It is a confrontation between the rigid logic of geometry and the chaotic will of the artist, holding the viewer in the tension between these opposing powers."})
 
 (defn layout [title & content]
   (html5
