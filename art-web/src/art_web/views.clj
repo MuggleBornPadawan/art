@@ -55,11 +55,11 @@
             [:div.card
              [:h3 "The Elements"]
              [:p "The tools to make art."]
-             [:ul (for [e elements] [:li (:title e)])]]
+             [:ul (for [e elements] [:li [:a {:href (url (str "/element/" (:id e) ".html"))} (:title e)]])]]
             [:div.card
              [:h3 "The Principles"]
              [:p "How to use the tools."]
-             [:ul (for [p principles] [:li (:title p)])]]]]))
+             [:ul (for [p principles] [:li [:a {:href (url (str "/principle/" (:id p) ".html"))} (:title p)]])]]]]))
 
 (defn detail-page [type id]
   (let [items (if (= type "element") elements principles)
