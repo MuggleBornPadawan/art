@@ -148,14 +148,14 @@ footer {
 }
 
 .collection h3 {
-    font-size: 1.25rem; /* Reduced from 1.5rem */
+    font-size: 1.35rem; /* Increased from 1.25rem */
     margin-bottom: 0.1rem;
     color: var(--text-color);
 }
 
 .collection p {
     margin-bottom: 0.5rem; /* Reduced from 1rem */
-    font-size: 0.9rem; /* Reduced from 1rem */
+    font-size: 0.95rem; /* Increased from 0.9rem */
 }
 
 .link-grid {
@@ -172,7 +172,7 @@ footer {
     padding: 0.1rem 0; /* Minimal padding */
     background: transparent;
     color: var(--text-color);
-    font-size: 0.95rem; /* Slightly smaller */
+    font-size: 1rem; /* Increased from 0.95rem */
     font-weight: 500;
     border-bottom: 1px solid transparent;
 }
@@ -354,6 +354,11 @@ a.button {
 @media (max-width: 800px) {
     body { height: auto; overflow-x: auto; }
     .detail-container { grid-template-columns: 1fr; gap: 2rem; }
+    
+    /* Mobile Typography Scale */
+    .detail-container h2 { font-size: 2.5rem; }
+    .definition { font-size: 1.1rem; }
+
     header { flex-direction: column; padding: 1rem; }
     nav ul { gap: 1rem; flex-wrap: wrap; justify-content: center; }
     .grid-container { grid-template-columns: 1fr; }
