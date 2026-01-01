@@ -36,9 +36,8 @@
     [:meta {:name "viewport" :content "width=device-width, initial-scale=1"}]]
    [:body
     [:header
-     [:div.logo-container
-      [:img.logo {:src (url "/img/glider.png") :alt "Glider Pattern"}]
-      [:h1 [:a {:href (url "/")} "The Grammar of Art"]]]
+     [:a.logo-link {:href (url "/")}
+      [:img.full-logo {:src (url "/img/logo_full.svg") :alt "The Grammar of Art"}]]
      [:nav
       [:ul
        [:li [:a.special {:href (url "/composition.html")} "Composition"]]]]]

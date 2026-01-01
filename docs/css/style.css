@@ -59,25 +59,17 @@ header {
     box-shadow: var(--shadow-sm);
 }
 
-.logo-container {
+.logo-link {
     display: flex;
     align-items: center;
-    gap: 1rem;
-    margin: 0;
+    text-decoration: none;
+    border-bottom: none; /* Override default link style */
 }
 
-.logo {
-    width: 32px;
-    height: 32px;
-    image-rendering: pixelated;
-    filter: sepia(100%) hue-rotate(190deg) saturate(500%) brightness(0.7) contrast(2); 
-}
-
-header h1 a {
-    font-size: 1.5rem;
-    color: var(--text-color);
-    font-family: var(--font-serif);
-    font-weight: 900;
+.full-logo {
+    height: 40px;
+    width: auto;
+    display: block;
 }
 
 nav ul {
