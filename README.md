@@ -54,4 +54,4 @@ lein run -m art-web.static
 Visit the live project here: [https://mugglebornpadawan.github.io/art/](https://mugglebornpadawan.github.io/art/)
 
 ## 📜 License
-This project is open source and available under the [MIT License](LICENSE).
+This project is open source and available under the [GNU General Public License v3.0](LICENSE).

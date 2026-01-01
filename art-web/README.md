@@ -16,4 +16,4 @@ To start a web server for the application, run:
 
 ## License
 
-Copyright © 2026 FIXME
+Distributed under the GNU General Public License v3.0. See the `LICENSE` file in the project root for more information.
