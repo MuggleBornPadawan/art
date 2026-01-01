@@ -72,8 +72,7 @@
                [:h2 (:title item)]
                [:p.definition (:desc item)]
                [:div.visual-demo
-                [:div.demo-canvas
-                 [:div.demo-content "Visual Demonstration"]]]
+                [:div.demo-canvas]]
                [:div.navigation
                 [:a {:href (url "/")} "&larr; Back to Home"]]])
       (layout "Not Found" [:h2 "Topic not found."]))))

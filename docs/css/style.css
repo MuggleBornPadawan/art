@@ -1,13 +1,15 @@
 :root {
-    --bg-color: #ffffff;
-    --text-color: #111111;
-    --accent-color: #333333;
-    --link-color: #0000ee;
-    --header-bg: #111111;
-    --header-text: #eeeeee;
+    --bg-color: #fcfcfc;
+    --text-color: #111;
+    --accent-color: #0022ff; /* International Klein Blue-ish */
+    --border-color: #000;
+    --grid-color: #e5e5e5;
+    
     --font-mono: 'Courier New', Courier, monospace;
-    --font-sans: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    --border-style: 2px solid #111;
+    --font-sans: 'Inter', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    
+    --border-width: 2px;
+    --shadow-offset: 6px;
 }
 
 body {
@@ -17,42 +19,72 @@ body {
     background-color: var(--bg-color);
     color: var(--text-color);
     line-height: 1.6;
+    
+    /* Technical Grid Background */
+    background-image: 
+        linear-gradient(var(--grid-color) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+    background-size: 40px 40px;
+    background-position: center top;
+}
+
+/* Typography Overrides */
+h1, h2, h3, nav {
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    letter-spacing: -0.05em;
+}
+
+a {
+    color: var(--accent-color);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: all 0.2s ease;
+}
+
+a:hover {
+    background-color: var(--accent-color);
+    color: #fff;
 }
 
 /* Header & Nav */
 header {
-    background: var(--header-bg);
-    color: var(--header-text);
-    padding: 1.5rem 0;
-    border-bottom: 4px solid #000;
+    background: #fff;
+    border-bottom: var(--border-width) solid var(--border-color);
+    padding: 2rem 0;
+    position: relative;
+    z-index: 10;
 }
 
 .logo-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 1rem;
-    margin-bottom: 1rem;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
 }
 
 .logo {
-    width: 50px;
-    height: 50px;
-    image-rendering: pixelated; /* Keeps the glider sharp */
-    filter: invert(1); /* Make it white on dark background if it's black-on-white originally */
-}
-
-header h1 {
-    margin: 0;
+    width: 64px;
+    height: 64px;
+    image-rendering: pixelated;
+    border: var(--border-width) solid var(--border-color);
+    padding: 4px;
+    background: #fff;
+    box-shadow: 4px 4px 0 var(--accent-color);
 }
 
 header h1 a {
-    color: var(--header-text);
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: var(--text-color);
     text-decoration: none;
-    font-family: var(--font-mono);
-    font-weight: 700;
-    letter-spacing: -1px;
-    text-transform: uppercase;
+    background: none; /* Reset hover */
+}
+
+header h1 a:hover {
+    color: var(--accent-color);
+    background: none;
 }
 
 nav ul {
@@ -60,151 +92,148 @@ nav ul {
     padding: 0;
     margin: 0;
     text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    max-width: 1000px;
+    margin: 0 auto;
 }
 
 nav li {
-    display: inline-block;
-    margin: 0 10px;
+    background: #fff;
+    border: 1px solid var(--border-color);
+    padding: 0.5rem 1rem;
+    box-shadow: 2px 2px 0 rgba(0,0,0,0.1);
 }
 
 nav span {
-    font-family: var(--font-mono);
     font-weight: bold;
-    color: #888;
-    text-transform: uppercase;
+    color: #666;
+    margin-right: 0.5rem;
     font-size: 0.8rem;
-    margin-right: 5px;
 }
 
 nav a {
-    color: #ccc;
-    text-decoration: none;
-    font-size: 0.95rem;
-    font-family: var(--font-mono);
-    border-bottom: 1px solid transparent;
-    transition: all 0.2s;
-}
-
-nav a:hover {
-    color: #fff;
-    border-bottom-color: #fff;
+    color: var(--text-color);
+    font-weight: bold;
+    font-size: 0.9rem;
 }
 
 /* Main Layout */
 main {
-    max-width: 1024px;
-    margin: 3rem auto;
+    max-width: 900px;
+    margin: 4rem auto;
     padding: 0 2rem;
     min-height: 60vh;
+    background: #fff;
+    border: var(--border-width) solid var(--border-color);
+    box-shadow: var(--shadow-offset) var(--shadow-offset) 0 var(--text-color);
+    padding: 4rem;
 }
 
 footer {
     text-align: center;
     padding: 2rem 0;
-    background: #f4f4f4;
-    color: #555;
+    color: #666;
     font-family: var(--font-mono);
-    font-size: 0.8rem;
-    border-top: var(--border-style);
+    font-size: 0.85rem;
+    background: #fff;
+    border-top: var(--border-width) solid var(--border-color);
     margin-top: 4rem;
 }
 
 /* Home Page */
 .hero {
     text-align: center;
-    margin-bottom: 4rem;
 }
 
 .hero h2 {
+    font-size: 3.5rem;
+    margin: 0 0 1rem 0;
+    line-height: 1;
+}
+
+.hero p {
+    font-size: 1.25rem;
+    color: #555;
+    margin-bottom: 4rem;
+    font-style: italic;
     font-family: var(--font-mono);
-    font-size: 3rem;
-    margin-bottom: 0.5rem;
-    text-transform: uppercase;
 }
 
 .grid-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-}
-
-.card {
-    background: #fff;
-    padding: 2rem;
-    border: var(--border-style);
-    box-shadow: 5px 5px 0px rgba(0,0,0,1); /* Brutalist shadow */
-    transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.card:hover {
-    transform: translate(-2px, -2px);
-    box-shadow: 7px 7px 0px rgba(0,0,0,1);
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    text-align: left;
 }
 
 .card h3 {
-    font-family: var(--font-mono);
-    border-bottom: 2px solid #000;
+    border-bottom: 2px solid var(--accent-color);
     padding-bottom: 0.5rem;
-    margin-top: 0;
-    text-transform: uppercase;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
 }
 
 .card ul {
-    list-style: square; /* Digital/Pixel feel */
-    padding-left: 1.2rem;
+    list-style: none;
+    padding: 0;
 }
 
 .card li {
-    padding: 0.2rem 0;
+    margin-bottom: 0.5rem;
+    font-family: var(--font-mono);
 }
 
-.card a {
-    color: var(--text-color);
-    text-decoration: none;
-    font-weight: 500;
-}
-
-.card a:hover {
-    text-decoration: underline;
-    background-color: #eee;
+.card a::before {
+    content: '> ';
+    color: var(--accent-color);
 }
 
 /* Detail Pages */
 .detail-container h2 {
-    font-family: var(--font-mono);
-    font-size: 3.5rem;
-    margin-bottom: 0.5rem;
-    text-transform: uppercase;
-    border-bottom: 4px solid #000;
-    display: inline-block;
+    font-size: 4rem;
+    margin: 0 0 1rem 0;
+    color: var(--text-color);
+    line-height: 1;
 }
 
 .definition {
-    font-size: 1.4rem;
+    font-size: 1.5rem;
+    line-height: 1.4;
     color: #444;
     margin-bottom: 3rem;
-    font-family: var(--font-sans);
-    border-left: 4px solid #ccc;
-    padding-left: 1rem;
+    border-left: 6px solid var(--accent-color);
+    padding-left: 1.5rem;
 }
 
 .visual-demo {
-    background: #fff;
-    padding: 1rem;
-    border: var(--border-style);
+    border: var(--border-width) solid var(--border-color);
     margin-bottom: 3rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 400px;
+    background: #fafafa;
+    position: relative;
+    /* "Viewport" label */
+}
+
+.visual-demo::before {
+    content: 'FIG. 1';
+    position: absolute;
+    top: -15px;
+    left: 10px;
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+    padding: 2px 8px;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-weight: bold;
+    z-index: 5;
 }
 
 .demo-canvas {
     width: 100%;
-    height: 400px;
+    height: 450px;
     position: relative;
-    border: 1px dashed #aaa;
-    background: #fafafa;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -213,144 +242,208 @@ footer {
 
 .navigation a {
     display: inline-block;
-    padding: 0.5rem 1rem;
-    background: #111;
+    padding: 1rem 2rem;
+    background: var(--text-color);
     color: #fff;
-    text-decoration: none;
     font-family: var(--font-mono);
     font-weight: bold;
+    border: none;
 }
 
 .navigation a:hover {
-    background: #333;
+    background: var(--accent-color);
+    box-shadow: 4px 4px 0 rgba(0,0,0,0.2);
+    transform: translate(-2px, -2px);
 }
 
 
-/* --- CSS Art Implementations (Refined) --- */
+/* --- CSS Art Implementations (Polished) --- */
 
-/* Line */
+/* Line: Dynamic, varied weights */
 .element-line .demo-canvas {
-    background: repeating-linear-gradient(90deg, transparent, transparent 19px, #000 20px);
+    background-image: 
+        linear-gradient(90deg, var(--text-color) 2px, transparent 2px),
+        linear-gradient(90deg, var(--text-color) 4px, transparent 4px),
+        linear-gradient(90deg, var(--text-color) 1px, transparent 1px);
+    background-size: 50px 100%, 120px 100%, 20px 100%;
+    background-position: 0 0, 25px 0, 0 0;
 }
 
-/* Shape */
+/* Shape: Bauhaus Primitives */
+.element-shape .demo-canvas {
+    background: #fff;
+}
 .element-shape .demo-canvas::before {
-    content: ''; width: 100px; height: 100px; background: #000;
-    position: absolute; left: 20%;
-    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    content: '';
+    position: absolute;
+    width: 0; height: 0;
+    border-left: 60px solid transparent;
+    border-right: 60px solid transparent;
+    border-bottom: 100px solid var(--text-color);
+    left: 25%;
 }
 .element-shape .demo-canvas::after {
-    content: ''; width: 100px; height: 100px; border: 4px solid #000; border-radius: 50%;
-    position: absolute; right: 20%;
-}
-
-/* Form */
-.element-form .demo-canvas::before {
-    content: ''; width: 120px; height: 120px;
-    background: radial-gradient(circle at 30% 30%, #fff, #aaa, #000);
+    content: '';
+    position: absolute;
+    width: 100px; height: 100px;
+    background: var(--accent-color);
     border-radius: 50%;
-    box-shadow: 15px 15px 30px rgba(0,0,0,0.3);
+    right: 25%;
+    mix-blend-mode: multiply;
 }
 
-/* Color */
+/* Form: Isometric Cube illusion */
+.element-form .demo-canvas::before {
+    content: '';
+    width: 100px; height: 100px;
+    background: #ccc;
+    transform: rotateX(60deg) rotateZ(45deg);
+    box-shadow: 
+        -10px 10px 0 #999,
+        -20px 20px 0 #666,
+        -30px 30px 0 #333,
+        -40px 40px 20px rgba(0,0,0,0.4);
+}
+
+/* Color: RGB Split */
 .element-color .demo-canvas {
-    background: linear-gradient(90deg, 
-        #ff0000 0%, #ff0000 16%, 
-        #00ff00 16%, #00ff00 32%, 
-        #0000ff 32%, #0000ff 48%,
-        #ffff00 48%, #ffff00 64%,
-        #00ffff 64%, #00ffff 80%,
-        #ff00ff 80%, #ff00ff 100%);
+    background: #000;
+    display: flex; gap: 0;
+}
+.element-color .demo-canvas::before,
+.element-color .demo-canvas::after {
+    content: ''; width: 100px; height: 100px; border-radius: 50%;
+    mix-blend-mode: screen;
+}
+.element-color .demo-canvas::before { background: red; margin-right: -40px; }
+.element-color .demo-canvas::after { background: lime; margin-left: -40px; }
+.element-color .demo-canvas {
+    box-shadow: inset 0 0 0 1000px #000; /* Wrapper hack */
+}
+/* We need a third element for Blue. Since we only have ::before/::after, 
+   let's use a box-shadow or background on the main div for the third color. */
+.element-color .demo-canvas {
+    background: blue; /* The background itself acts as blue */
+    align-items: center; justify-content: center;
 }
 
-/* Texture */
+/* Texture: Noise / Grain */
 .element-texture .demo-canvas {
-    background-image: 
-        linear-gradient(45deg, #ccc 25%, transparent 25%, transparent 75%, #ccc 75%, #ccc),
-        linear-gradient(45deg, #ccc 25%, transparent 25%, transparent 75%, #ccc 75%, #ccc);
+    background-color: #eee;
+    background-image: repeating-radial-gradient(circle at 17% 32%, #fff, #333 0.5px, transparent 1px, transparent 3px);
+    background-size: 20px 20px;
+}
+
+/* Space: Deep perspective grid */
+.element-space .demo-canvas {
+    background: 
+        linear-gradient(rgba(0,0,255,0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,0,255,0.1) 1px, transparent 1px);
+    background-size: 40px 40px;
+    perspective: 400px;
+}
+.element-space .demo-canvas::before {
+    content: ''; width: 100px; height: 100px;
+    background: var(--text-color);
+    transform: rotateX(45deg) translateZ(-100px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+}
+
+/* Value: Halftone Gradient */
+.element-value .demo-canvas {
+    background: radial-gradient(circle, #000 20%, transparent 20%);
     background-color: #fff;
     background-size: 20px 20px;
-    background-position: 0 0, 10px 10px;
-}
-
-/* Space */
-.element-space .demo-canvas { perspective: 600px; }
-.element-space .demo-canvas::before {
-    content: ''; width: 100px; height: 100px; background: #000;
-    position: absolute; top: 80px; left: 100px; z-index: 2;
-    border: 2px solid #fff;
-}
-.element-space .demo-canvas::after {
-    content: ''; width: 100px; height: 100px; background: #999;
-    position: absolute; top: 50px; left: 150px; z-index: 1;
-    transform: translateZ(-200px);
-}
-
-/* Value */
-.element-value .demo-canvas {
-    background: linear-gradient(to right, #fff, #000);
+    /* Vary the size using a mask or multiple gradients is hard. 
+       Let's stick to a simple linear gradient but high contrast. */
+    background: repeating-linear-gradient(90deg, #000, #000 10%, #fff 10%, #fff 20%);
 }
 
 
 /* Principles */
 
-/* Balance */
+/* Balance: Asymmetrical Balance */
 .principle-balance .demo-canvas {
-    display: flex; justify-content: center; gap: 50px;
+    display: flex; align-items: center; justify-content: center; gap: 40px;
 }
-.principle-balance .demo-canvas::before, .principle-balance .demo-canvas::after {
-    content: ''; width: 60px; height: 60px; background: #000;
+.principle-balance .demo-canvas::before {
+    content: ''; width: 120px; height: 120px; background: #ddd; border-radius: 50%;
+}
+.principle-balance .demo-canvas::after {
+    content: ''; width: 40px; height: 40px; background: var(--text-color);
 }
 
-/* Contrast */
+/* Contrast: Scale & Color */
 .principle-contrast .demo-canvas {
-    background: #000;
+    background: var(--text-color);
 }
 .principle-contrast .demo-canvas::before {
-    content: ''; width: 40px; height: 40px; background: #fff; border-radius: 50%;
+    content: ''; width: 20px; height: 20px; background: #fff;
+    box-shadow: 0 0 0 100px var(--accent-color); /* Huge blue aura */
 }
 
-/* Emphasis */
+/* Emphasis: The Red Dot */
 .principle-emphasis .demo-canvas {
-    background-image: radial-gradient(#aaa 2px, transparent 2px);
-    background-size: 30px 30px;
+    display: grid; grid-template-columns: repeat(5, 1fr); gap: 15px; width: 300px;
+}
+.principle-emphasis .demo-canvas {
+    background-image: radial-gradient(#ccc 4px, transparent 4px);
+    background-size: 60px 60px;
 }
 .principle-emphasis .demo-canvas::before {
-    content: ''; width: 40px; height: 40px; background: red; border-radius: 50%;
-    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    content: ''; width: 30px; height: 30px; background: var(--accent-color);
+    position: absolute; top: 40%; left: 60%;
+    box-shadow: 0 0 20px var(--accent-color);
 }
 
-/* Movement */
+/* Movement: Flowing Lines */
 .principle-movement .demo-canvas {
-    background: repeating-linear-gradient(45deg, #eee, #eee 10px, #fff 10px, #fff 20px);
+    background: repeating-linear-gradient(45deg, transparent, transparent 20px, var(--text-color) 20px, var(--text-color) 22px);
 }
 .principle-movement .demo-canvas::before {
-    content: '>>>>>'; font-size: 5rem; font-family: var(--font-mono); letter-spacing: -10px; color: #000;
+    content: ''; width: 100px; height: 100px; border: 4px solid var(--accent-color); border-radius: 50%;
+    transform: translateX(-100px);
 }
 
-/* Pattern */
+/* Pattern: Glider Tiling */
 .principle-pattern .demo-canvas {
-    background-image: url('../img/glider.png'); /* Use the uploaded glider as a pattern! */
-    background-size: 50px 50px;
+    background-image: url('../img/glider.png');
+    background-size: 64px 64px;
     image-rendering: pixelated;
+    opacity: 0.8;
 }
 
-/* Rhythm */
-.principle-rhythm .demo-canvas {
-    display: flex; gap: 20px; align-items: flex-end; height: 200px;
-}
+/* Rhythm: Bouncing Ball path */
 .principle-rhythm .demo-canvas::before {
-    content: ''; width: 20px; height: 50px; background: #000;
-    box-shadow: 40px -20px 0 0 #000, 80px -40px 0 0 #000, 120px -10px 0 0 #000;
+    content: '';
+    width: 20px; height: 20px; background: var(--text-color); border-radius: 50%;
+    box-shadow: 
+        50px -50px 0 0 var(--text-color),
+        100px 0px 0 0 var(--text-color),
+        150px -30px 0 0 var(--text-color),
+        200px 0px 0 0 var(--text-color);
 }
 
-/* Unity */
+/* Unity: Gestalt */
 .principle-unity .demo-canvas {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; width: 200px;
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; width: 150px;
 }
-/* Creating multiple squares via bg gradient hack */
-.principle-unity .demo-canvas {
-    background-image: linear-gradient(#333 1px, transparent 1px), linear-gradient(90deg, #333 1px, transparent 1px);
-    background-size: 20px 20px;
-    background-color: #eee;
+.principle-unity .demo-canvas::before, .principle-unity .demo-canvas::after {
+    content: ''; width: 60px; height: 60px; background: var(--text-color);
+}
+/* We need 4 items for a 2x2 grid to look united.
+   Using box-shadow to create clones. */
+.principle-unity .demo-canvas::before {
+    box-shadow: 80px 0 0 var(--text-color), 0 80px 0 var(--text-color), 80px 80px 0 var(--text-color);
+    width: 60px; height: 60px; background: var(--text-color);
+    position: absolute;
+}
+.principle-unity .demo-canvas::after { display: none; }
+
+
+/* Responsive */
+@media (max-width: 768px) {
+    .grid-container { grid-template-columns: 1fr; }
+    main { padding: 2rem 1rem; margin: 2rem 1rem; }
+    .hero h2 { font-size: 2.5rem; }
 }
