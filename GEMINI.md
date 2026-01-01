@@ -2,66 +2,68 @@
 
 ## Project Overview
 
-This is a Clojure-based web application designed to teach the fundamental elements of art and principles of composition. It is a dual-mode application:
+This is a Clojure-based interactive web application designed to teach the fundamental elements of art, principles of composition, and visual phenomenology. It is a dual-mode application:
 1.  **Development:** A dynamic web server using Ring and Compojure.
-2.  **Production:** A static site generator that outputs HTML files to the `docs/` directory for hosting on GitHub Pages.
+2.  **Production:** A static site generator that outputs HTML, CSS, and JS to the `docs/` directory for hosting on GitHub Pages.
 
 **Tech Stack:**
 *   **Language:** Clojure
 *   **Build Tool:** Leiningen
 *   **Web Framework:** Ring / Compojure
-*   **Templating:** Hiccup
-*   **Styling:** Custom CSS (No preprocessors)
+*   **Interactivity:** Vanilla JS + CSS Variables
+*   **Styling:** Custom CSS (Generative & Responsive)
 
 ## Design Philosophy
 
 The project uses a **"Modern Gallery"** aesthetic:
 *   **Branding:** A unified SVG brand mark combining the Glider (hacker emblem) and the site title.
 *   **Typography:** `Merriweather` (Serif) for headers, `Inter` (Sans-Serif) for body.
-*   **Palette:**
-    *   **Background:** Soft White (`#fdfdfd`)
-    *   **Text:** Deep Blue (`#061735`)
-    *   **Accents:** Gold (`#B3892C`)
-*   **Layout:** "Compact Viewport" design. Both the Home page and Detail pages are fitted to `100vh` to eliminate vertical scrolling on desktop, providing a focused, immersive experience.
-*   **Navigation:** A guided "linear tour" model. Users can flow through the curriculum using Next/Prev controls on each page.
-*   **Generative Visuals:** Art demonstrations are created using pure CSS. They utilize **"Simulated Randomness"**—multiple asynchronous animation loops with prime-number durations—to create organic, non-repetitive visual experiences.
+*   **Palette:** Background: `#fdfdfd`, Text: `#061735`, Accents: `#B3892C`.
+*   **Layout:** "Compact Viewport" design (100vh) to eliminate vertical scrolling on desktop.
+*   **Curatorial Voice:** Content is written from a high-end curatorial perspective, focusing on the philosophical "essence" of art rather than simple textbook definitions.
 
 ## Architecture
 
-The application logic resides in the `art-web` directory.
-*   **Dynamic Serving:** `art-web.handler` defines routes for development.
-*   **Static Generation:** `art-web.static` leverages the same views to generate static HTML files, handling URL prefixes for GitHub Pages (e.g., `/art/`) and copying assets (CSS/Images/SVG).
-*   **Content/Views:** `art-web.views` contains all textual content and HTML structure. Content is written from a curatorial perspective, focusing on visual theory (e.g., *Chiaroscuro*, *Gestalt*, *Negative Space*).
+*   **Interactive Layer (`js/interaction.js`):** Tracks mouse/touch coordinates and injects normalized values (`--int-x`, `--int-y`) into CSS. 
+*   **Generative Visuals:** Pure CSS animations using prime-number loops and keyframe transformations.
+*   **Static Generation (`static.clj`):** Compiles 30+ pages (Home, 24 Details, 6 Sections, 1 Synthesis) and copies CSS/JS/Images to the `docs/` folder.
+
+## Curriculum Structure
+
+The site is organized into 6 distinct pillars:
+1.  **The Elements:** Fundamental building blocks.
+2.  **The Principles:** Rules of organization and tension.
+3.  **Perception:** Gestalt laws of visual psychology.
+4.  **Structure:** Mathematical and compositional grids.
+5.  **Spatial Depth:** Techniques for 3D simulation.
+6.  **Color Dynamics:** Advanced color theory and alchemy.
 
 ## Directory Structure
 
 *   `art-web/`: The core Clojure project.
-    *   `src/art_web/`: Source code.
-        *   `handler.clj`: Ring application routes.
-        *   `views.clj`: Hiccup templates and curatorial data definitions.
-        *   `static.clj`: Script to generate the static site.
-    *   `resources/public/css/`: Main stylesheet containing all generative art logic.
-    *   `resources/public/img/`: Image and SVG assets (e.g., `logo_full.svg`).
-    *   `project.clj`: Leiningen configuration.
-*   `docs/`: The generated static website. This folder is served by GitHub Pages.
+    *   `src/art_web/`:
+        *   `handler.clj`: Compojure routes (now including 6 section paths).
+        *   `views.clj`: Hiccup templates and the complete curatorial content database.
+        *   `static.clj`: Static site generator with JS/CSS copy logic.
+    *   `resources/public/`:
+        *   `css/style.css`: Main stylesheet containing 24+ generative art definitions and `.js-active` interactive overrides.
+        *   `js/interaction.js`: The coordinate tracking script.
+        *   `img/`: SVG logos and assets.
+*   `docs/`: The generated static website, served by GitHub Pages.
 
 ## Building and Running
 
-All commands should be run from inside the `art-web` directory.
-
 ### 1. Development Server
-Starts a local web server (usually on port 3000) with hot-reloading for views.
 ```bash
 cd art-web
 lein ring server
 ```
 
 ### 2. Generate Static Site
-Compiles the views into static HTML files in the `docs/` directory.
 ```bash
 cd art-web
 lein run -m art-web.static
 ```
 
 ### 3. Deploy
-Regenerate the static site, commit the `docs/` folder, and push to the `main` branch.
+Regenerate, commit the `docs/` folder, and push to the `main` branch.

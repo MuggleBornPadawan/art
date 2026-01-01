@@ -1,36 +1,37 @@
 # The Grammar of Art
 
-An educational web application covering the fundamental **Elements of Art**, **Principles of Composition**, and their final **Synthesis**.
+A comprehensive, interactive educational web application designed to teach the fundamental vocabulary of visual art and the hidden geometry of composition.
 
-Built with **Clojure**, this project serves as both a dynamic educational tool and a static site generator for hosting on GitHub Pages. It features a "Modern Gallery" aesthetic designed for maximum readability and visual impact.
+Built with **Clojure**, this project serves as both a philosophical exhibition and a technical demonstration of **Generative CSS Art**. It features a "Modern Gallery" aesthetic, designed for an immersive, non-scrolling desktop experience.
 
-## 🎨 Content Covered
+## 🎨 The 6 Pillars of the Curriculum
 
-### The 7 Elements of Art
-Materiality and Perception:
-*   Line, Shape, Form, Color, Texture, Space, and Value.
+The application covers 24 distinct concepts across six core categories, narrated through a refined, curatorial perspective:
 
-### The 7 Principles of Composition
-Organization and Psychology:
-*   Balance, Contrast, Emphasis, Movement, Pattern, Rhythm, and Unity.
+1.  **The Elements:** The primal atoms of vision (Line, Shape, Form, Color, Texture, Space, Value).
+2.  **The Principles:** The management of visual tension (Balance, Contrast, Rhythm, Unity, etc.).
+3.  **Perception (Gestalt):** The psychological construction of reality (Closure, Figure-Ground, Proximity).
+4.  **Structure:** The hidden geometry of design (Golden Ratio, Rule of Thirds, Hierarchy).
+5.  **Spatial Depth:** The conquest of the 2D plane (Perspective, Atmospheric Depth, Foreshortening).
+6.  **Color Dynamics:** The alchemy of feeling (Temperature, Saturation, Simultaneous Contrast).
 
-### The Synthesis
-*   **Composition:** "The Arrested Moment"—the freezing of dynamic forces in precarious equilibrium.
+## 🚀 Key Features
 
-## 🚀 Features
-*   **Dynamic Development:** Real-time rendering using Clojure/Ring.
-*   **Generative CSS Art:** Each concept includes a sophisticated, real-time CSS animation using prime-number timing loops to simulate organic randomness.
-*   **"Modern Gallery" Theme:** High-readability layout with a Soft White background, Deep Blue text, and Gold accents.
-*   **Compact Viewport UI:** Optimized to fit content on a single screen (100vh) without scrolling on desktop.
-*   **Linear Navigation:** "Next/Previous" controls allow for a guided, sequential tour of the curriculum.
-*   **Static Site Generation:** Automated script to compile views into optimized HTML for GitHub Pages.
+*   **Interactive "Workshop" Mode:** Every artwork reacts to user input. Move your mouse (or touch) to manipulate the vanishing points, shift color temperatures, or break the laws of proximity in real-time.
+*   **Generative CSS Art:** Sophisticated, code-driven visualizations that utilize "Simulated Randomness" and prime-number timing loops to create organic, non-repetitive motion.
+*   **The Cinematic Finale:** A multi-layered "Composition" masterclass that synthesizes all concepts into a singular, orchestrated visual narrative.
+*   **Refined Curatorial Voice:** Content written with the depth and poetic analysis of a veteran art curator, moving beyond simple definitions into visual theory.
+*   **Modern Gallery Aesthetic:** A high-end UI featuring `Merriweather` and `Inter` typography, a Soft White palette, and Deep Blue/Gold accents.
+*   **Dual-Mode Architecture:** A dynamic Clojure/Ring development server and a high-performance Static Site Generator for GitHub Pages.
 
 ## 🛠 Tech Stack
+
 *   **Language:** Clojure
+*   **Interactivity:** Vanilla JavaScript + CSS Custom Properties (Variables)
 *   **Web Server:** Ring / Jetty
 *   **Routing:** Compojure
 *   **HTML Generation:** Hiccup
-*   **Visuals:** Pure CSS (Generative)
+*   **Visuals:** Pure CSS (Generative & Interactive)
 *   **Hosting:** GitHub Pages (via the `docs/` folder)
 
 ## 💻 Local Development
@@ -57,7 +58,7 @@ lein run -m art-web.static
 ```
 
 ## 🌐 Live Site
-Visit the live gallery here: [https://mugglebornpadawan.github.io/art/](https://mugglebornpadawan.github.io/art/)
+Visit the interactive gallery here: [https://mugglebornpadawan.github.io/art/](https://mugglebornpadawan.github.io/art/)
 
 ## 📜 License
 This project is open source and available under the [GNU General Public License v3.0](LICENSE).
