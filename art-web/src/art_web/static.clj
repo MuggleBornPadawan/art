@@ -3,7 +3,7 @@
             [clojure.java.io :as io]))
 
 (defn write-page [path content]
-  (let [file (io/file "docs" path)]
+  (let [file (io/file "../docs" path)]
     (io/make-parents file)
     (spit file content)
     (println "Generated:" path)))
@@ -29,7 +29,7 @@
 
   ;; Copy CSS
   (let [css-source (io/file "resources/public/css")
-        css-dest (io/file "docs/css")]
+        css-dest (io/file "../docs/css")]
     (if (.exists css-source)
       (do
         (.mkdirs css-dest)
