@@ -423,6 +423,29 @@ a.button {
 .composition-composition .demo-canvas::before { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 200px; height: 200px; background-image: linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px); background-size: 40px 40px; border: 1px solid rgba(255,255,255,0.2); animation: thesisGrid 12s cubic-bezier(0.65, 0, 0.35, 1) infinite; }
 .composition-composition .demo-canvas::after { content: ''; position: absolute; width: 80px; height: 80px; background: var(--accent-color); border-radius: 50%; opacity: 0; box-shadow: 0 0 30px rgba(179, 137, 44, 0.4); animation: antithesisShape 12s cubic-bezier(0.65, 0, 0.35, 1) infinite; }
 
+/* --- Interaction Overrides (Enabled by interaction.js) --- */
+.js-active .spatial-depth-linear-perspective .demo-canvas {
+    perspective-origin: calc(var(--int-x, 0.5) * 100%) calc(var(--int-y, 0.5) * 100%);
+    transition: perspective-origin 0.1s ease-out;
+}
+
+.js-active .perception-proximity .demo-canvas::before {
+    animation: none;
+    transform: translate(calc((var(--int-x, 0.5) - 0.5) * -100px), 0);
+    transition: transform 0.1s ease-out;
+}
+.js-active .perception-proximity .demo-canvas::after {
+    animation: none;
+    transform: translate(calc((var(--int-x, 0.5) - 0.5) * 100px), 0);
+    transition: transform 0.1s ease-out;
+}
+
+.js-active .color-dynamics-temperature .demo-canvas::before {
+    animation: none;
+    left: calc(var(--int-x, 0.5) * 80% + 10%);
+    transition: left 0.1s ease-out;
+}
+
 /* Responsive Adjustments */
 @media (max-width: 800px) {
     body { height: auto; overflow-x: auto; }

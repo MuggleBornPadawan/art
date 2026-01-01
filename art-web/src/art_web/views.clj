@@ -58,6 +58,7 @@
    [:head
     [:title (str title " - The Grammar of Art")]
     (include-css (url "/css/style.css"))
+    [:script {:src (url "/js/interaction.js") :defer true}]
     [:meta {:name "viewport" :content "width=device-width, initial-scale=1"}]]
    [:body
     [:header

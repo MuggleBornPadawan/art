@@ -80,4 +80,19 @@
               (println "Copied Image:" (.getName file))))))
       (println "Warning: Image directory not found.")))
   
+  ;; Copy JS
+  (let [js-source (io/file "resources/public/js")
+        js-dest (io/file "../docs/js")]
+    (if (.exists js-source)
+      (do
+        (.mkdirs js-dest)
+        (doseq [file (file-seq js-source)]
+          (when (.isFile file)
+            (let [rel-path (subs (.getPath file) (count (.getPath js-source)))
+                  dest-file (io/file js-dest (if (.startsWith rel-path "/") (subs rel-path 1) rel-path))]
+              (io/make-parents dest-file)
+              (io/copy file dest-file)
+              (println "Copied JS:" (.getName file))))))
+      (println "Warning: JS directory not found.")))
+
   (println "Static site generation complete!"))
