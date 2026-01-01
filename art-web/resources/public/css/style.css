@@ -294,44 +294,56 @@ a.button {
 
 /* --- The Elements --- */
 .element-line .demo-canvas { background: #061735; }
-.element-line .demo-canvas::before { content: ''; width: 2px; height: 80%; background: var(--accent-color); box-shadow: 0 0 10px var(--accent-color); animation: vibrate 0.1s linear infinite; }
+.element-line .demo-canvas::before { content: ''; width: 2px; height: 80%; background: var(--accent-color); box-shadow: 0 0 10px var(--accent-color); animation: vibrate 0.13s linear infinite; }
+
 .element-shape .demo-canvas { background: #061735; }
-.element-shape .demo-canvas::before { content: ''; width: 100px; height: 100px; background: var(--accent-color); position: absolute; top: 30%; left: 30%; animation: drift 10s ease-in-out infinite; }
-.element-shape .demo-canvas::after { content: ''; width: 120px; height: 120px; border: 2px solid var(--muted-text); border-radius: 50%; position: absolute; top: 40%; left: 40%; mix-blend-mode: exclusion; animation: drift 15s ease-in-out infinite reverse; }
-.element-form .demo-canvas::before { content: ''; width: 200px; height: 200px; border-radius: 50%; background: radial-gradient(circle at 50% 50%, #fff, #061735); background-size: 200% 200%; animation: lightShift 5s ease-in-out infinite; }
+.element-shape .demo-canvas::before { content: ''; width: 100px; height: 100px; background: var(--accent-color); position: absolute; top: 30%; left: 30%; animation: drift 11s ease-in-out infinite; }
+.element-shape .demo-canvas::after { content: ''; width: 120px; height: 120px; border: 2px solid var(--muted-text); border-radius: 50%; position: absolute; top: 40%; left: 40%; mix-blend-mode: exclusion; animation: drift 17s ease-in-out infinite reverse; }
+
+.element-form .demo-canvas::before { content: ''; width: 200px; height: 200px; border-radius: 50%; background: radial-gradient(circle at 50% 50%, #fff, #061735); background-size: 200% 200%; animation: lightShift 13s ease-in-out infinite; }
+
 .element-color .demo-canvas { background: #061735; }
-.element-color .demo-canvas::before { content: ''; width: 150px; height: 150px; background: var(--accent-color); position: absolute; left: 25%; mix-blend-mode: screen; animation: colorBreath 6s ease-in-out infinite; }
-.element-color .demo-canvas::after { content: ''; width: 150px; height: 150px; background: #4a5b7c; position: absolute; right: 25%; mix-blend-mode: screen; animation: colorBreath 6s ease-in-out infinite reverse; }
+.element-color .demo-canvas::before { content: ''; width: 150px; height: 150px; background: var(--accent-color); position: absolute; left: 25%; mix-blend-mode: screen; animation: colorBreath 17s ease-in-out infinite; }
+.element-color .demo-canvas::after { content: ''; width: 150px; height: 150px; background: #4a5b7c; position: absolute; right: 25%; mix-blend-mode: screen; animation: colorBreath 19s ease-in-out infinite reverse; }
+
 .element-texture .demo-canvas { background: #fff; }
 .element-texture .demo-canvas::before, .element-texture .demo-canvas::after { content: ''; position: absolute; width: 200%; height: 200%; background: repeating-linear-gradient(45deg, #000 0, #000 1px, transparent 1px, transparent 4px); }
-.element-texture .demo-canvas::before { animation: moireRotate 60s linear infinite; }
+.element-texture .demo-canvas::before { animation: moireRotate 67s linear infinite; }
 .element-texture .demo-canvas::after { opacity: 0.5; }
+
 .element-space .demo-canvas { background: #fff; }
 .element-space .demo-canvas::before { content: ''; width: 60%; height: 60%; border: 1px solid #000; }
-.element-space .demo-canvas::after { content: ''; width: 150px; height: 150px; background: #000; position: absolute; right: -50px; animation: spaceBreathe 8s ease-in-out infinite; }
-.element-value .demo-canvas { background: #000; -webkit-mask-image: radial-gradient(circle, black 20%, transparent 50%); mask-image: radial-gradient(circle, black 20%, transparent 50%); -webkit-mask-size: 200% 200%; mask-size: 200% 200%; animation: spotlight 8s linear infinite; }
+.element-space .demo-canvas::after { content: ''; width: 150px; height: 150px; background: #000; position: absolute; right: -50px; animation: spaceBreathe 19s ease-in-out infinite; }
+
+.element-value .demo-canvas { background: #000; -webkit-mask-image: radial-gradient(circle, black 20%, transparent 50%); mask-image: radial-gradient(circle, black 20%, transparent 50%); -webkit-mask-size: 200% 200%; mask-size: 200% 200%; animation: spotlight 23s linear infinite; }
 .element-value .demo-canvas::before { content: ''; width: 100%; height: 100%; background: linear-gradient(45deg, #fff 25%, transparent 25%) -50px 0, linear-gradient(-45deg, #fff 25%, transparent 25%) -50px 0; background-size: 100px 100%; opacity: 0.2; }
 
 /* --- The Principles --- */
 .principle-balance .demo-canvas { background: #fff; }
 .principle-balance .demo-canvas::before { content: ''; width: 100px; height: 100px; background: #000; position: absolute; left: 30%; }
-.principle-balance .demo-canvas::after { content: ''; width: 10px; height: 10px; background: var(--accent-color); border-radius: 50%; position: absolute; left: 30%; animation: orbit 4s linear infinite; }
+.principle-balance .demo-canvas::after { content: ''; width: 10px; height: 10px; background: var(--accent-color); border-radius: 50%; position: absolute; left: 30%; animation: orbit 13.7s linear infinite; }
+
 .principle-contrast .demo-canvas { background: #000; }
-.principle-contrast .demo-canvas::before { content: ''; width: 80px; height: 80px; border: 4px solid var(--accent-color); animation: blurFocus 6s linear infinite; }
-.principle-emphasis .demo-canvas { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; width: 200px; background-image: radial-gradient(#4a5b7c 2px, transparent 2px); background-size: 20px 20px; animation: glitch 0.2s infinite; }
+.principle-contrast .demo-canvas::before { content: ''; width: 80px; height: 80px; border: 4px solid var(--accent-color); animation: blurFocus 11s linear infinite; }
+
+.principle-emphasis .demo-canvas { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; width: 200px; background-image: radial-gradient(#4a5b7c 2px, transparent 2px); background-size: 20px 20px; animation: glitch 0.23s infinite; }
 .principle-emphasis .demo-canvas::before { content: ''; width: 20px; height: 20px; background: var(--accent-color); position: absolute; top: 61%; left: 61%; box-shadow: 0 0 20px var(--accent-color); }
+
 .principle-movement .demo-canvas { background: #fff; }
-.principle-movement .demo-canvas::before { content: ''; width: 50px; height: 50px; border: 2px solid #000; border-radius: 50%; box-shadow: -30px 0 0 -5px rgba(0,0,0,0.5), -60px 0 0 -10px rgba(0,0,0,0.3), -90px 0 0 -15px rgba(0,0,0,0.1); animation: ghostTrail 3s linear infinite; }
-.principle-pattern .demo-canvas { background-color: #061735; background-image: url('../img/glider.png'); background-size: 40px 40px; image-rendering: pixelated; animation: scrollBg 2s steps(8) infinite; }
+.principle-movement .demo-canvas::before { content: ''; width: 50px; height: 50px; border: 2px solid #000; border-radius: 50%; box-shadow: -30px 0 0 -5px rgba(0,0,0,0.5), -60px 0 0 -10px rgba(0,0,0,0.3), -90px 0 0 -15px rgba(0,0,0,0.1); animation: ghostTrail 4.1s linear infinite; }
+
+.principle-pattern .demo-canvas { background-color: #061735; background-image: url('../img/glider.png'); background-size: 40px 40px; image-rendering: pixelated; animation: scrollBg 37s steps(8) infinite; }
 @keyframes scrollBg { from { background-position: 0 0; } to { background-position: 40px 40px; } }
+
 .principle-rhythm .demo-canvas { display: flex; align-items: flex-end; justify-content: center; gap: 20px; height: 200px; background: #061735; }
 .principle-rhythm .demo-canvas::before, .principle-rhythm .demo-canvas::after { content: ''; width: 20px; background: var(--accent-color); }
-.principle-rhythm .demo-canvas::before { animation: polyrhythm 2s ease-in-out infinite; }
-.principle-rhythm .demo-canvas::after { animation: polyrhythm 3s ease-in-out infinite; }
+.principle-rhythm .demo-canvas::before { animation: polyrhythm 2.3s ease-in-out infinite; }
+.principle-rhythm .demo-canvas::after { animation: polyrhythm 3.1s ease-in-out infinite; }
+
 .principle-unity .demo-canvas { background: #fff; }
 .principle-unity .demo-canvas::before, .principle-unity .demo-canvas::after { content: ''; width: 50px; height: 50px; border: 2px solid #000; position: absolute; }
-.principle-unity .demo-canvas::before { var(--x): -40px; var(--y): -40px; var(--r): 15deg; animation: gestalt 5s ease-in-out infinite; }
-.principle-unity .demo-canvas::after { var(--x): 40px; var(--y): 40px; var(--r): -15deg; animation: gestalt 5s ease-in-out infinite; }
+.principle-unity .demo-canvas::before { var(--x): -40px; var(--y): -40px; var(--r): 15deg; animation: gestalt 13s ease-in-out infinite; }
+.principle-unity .demo-canvas::after { var(--x): 40px; var(--y): 40px; var(--r): -15deg; animation: gestalt 13s ease-in-out infinite; }
 
 /* --- The Synthesis: Composition --- */
 .composition-composition .demo-canvas { background: #061735; position: relative; }
