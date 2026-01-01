@@ -132,5 +132,11 @@
                  (if next-item
                    [:a.next {:href (url (str "/" type "/" (:id next-item) ".html"))} (str (:title next-item) " →")])]]
                [:div.visual-demo
-                [:div.demo-canvas]]])
+                (if (= id "composition")
+                  [:div.demo-canvas
+                   [:div.layer-structure]
+                   [:div.layer-space
+                    [:div.horizon]]
+                   [:div.layer-subject]]
+                  [:div.demo-canvas])]])
       (layout "Not Found" [:h2 "Topic not found."]))))
